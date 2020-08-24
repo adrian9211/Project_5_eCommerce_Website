@@ -1,0 +1,53 @@
+
+.items {
+    padding: 3%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.navbar {
+    background-color: darkolivegreen;
+}
+
+.orinoco, h1 {
+    padding-left: 40px;
+    position: relative;
+    color: white;
+}
+
+.nav-item{
+    padding: 10px;
+    position: relative;
+    left: -50px;
+    top: -60px;
+}
+
+.nav-link2 {
+ color: rgb(252, 252, 252);
+}
+
+.paragraph {
+    
+    word-wrap: normal;
+    padding-top: 110px;
+    padding-left: auto;
+    margin: auto;
+    position: relative;
+    font-size: 3rem;
+    
+}
+
+footer {
+    color: white;
+    padding: 10px;
+    text-align: center;
+    background-color: darkolivegreen;
+    list-style-type: none;
+}
+
+.nav-item {
+    top: 0px;
+    padding: 20px;
+}
+

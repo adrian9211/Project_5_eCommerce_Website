@@ -11,7 +11,7 @@ const app = express();
 
 mongoose.connect(
   'mongodb+srv://will:nAcmfCoHGDgzrCHG@cluster0-pme76.mongodb.net/test?retryWrites=true',
-  { useNewUrlParser: true })
+  { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('Successfully connected to MongoDB Atlas!');
   })
@@ -31,7 +31,7 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use(bodyParser.json());
 
-app.use('/models/cameras', cameraRoutes);
+app.use('/api/cameras', cameraRoutes);
 app.use('/api/teddies', teddyRoutes);
 app.use('/api/furniture', furnitureRoutes);
 
