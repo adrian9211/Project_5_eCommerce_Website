@@ -1,9 +1,9 @@
 
-fetch('http://localhost:3000/api/cameras')          // Fetch function get acces to database and json file
+fetch('http://localhost:3000/api/cameras')       // Fetch function get acces to database and json file
 
-.then(response => response.json())         // Responsse from json file
-.then(response => {
-    console.log(response);
+.then(res => res.json())       /*?*/  // Responsse from json file
+.then(res => {
+    console.log(response); /*?*/
 
     const products = document.getElementById('productsContainer');      //Get acces to DOM element - produtsContainer classs
     response.forEach(element => {                                   // response for each element of DIV
@@ -23,14 +23,14 @@ fetch('http://localhost:3000/api/cameras')          // Fetch function get acces 
         const myDivB = document.createElement('div');       //Div for all item information : name, price and description
         card.append(myDivB);
 
-        const nom = document.createElement('h3');       
+        const nom = document.createElement('h3');
         myDivB.append(nom);
 
-        const prix = document.createElement('h4');      
+        const prix = document.createElement('h4');
         prix.textContent = element.price / 100 +',00'+ " €";
         myDivB.append(prix);
 
-        const descriptText = document.createElement('P');       
+        const descriptText = document.createElement('P');
         descriptText.textContent = element.description;
         myDivB.append(descriptText);
 
@@ -39,3 +39,5 @@ fetch('http://localhost:3000/api/cameras')          // Fetch function get acces 
 })
 
 .catch(error => alert('Sorry, the server is not responding! Please try again later.'));         // In case of error display alert.
+
+/*?*/
