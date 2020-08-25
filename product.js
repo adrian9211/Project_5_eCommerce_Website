@@ -7,12 +7,12 @@ fetch('http://localhost:3000/api/cameras')       // Fetch function get acces to 
 
     const products = document.getElementById('productsContainer');      //Get acces to DOM element - produtsContainer classs
     response.forEach(element => {                                   // response for each element of DIV
-        const myDiv = document.createElement('div');
-        myDiv.className = "article col-lg-4 col-md-6 mb-4";        // New div for each camera
+        const firstDiv = document.createElement('div');
+        firstDiv.className = "article col-lg-4 col-md-6 mb-4";        // New div for each camera
 
         const card = document.createElement('div');
         card.className = "card h-100"
-        myDiv.append(card);
+        firstDiv.append(card);
 
         const img = document.createElement('img');         //Create and display element IMG
         img.className = "card-img-top";
@@ -20,22 +20,30 @@ fetch('http://localhost:3000/api/cameras')       // Fetch function get acces to 
         img.innerHTML = ` alt="${element.name}" src="${element.imageUrl}"`;
         card.append(img);
 
-        const myDivB = document.createElement('div');       //Div for all item information : name, price and description
-        card.append(myDivB);
+        const secondDiv = document.createElement('div');       //Div for all item information : name, price and description
+        card.append(secondDiv);
 
-        const nom = document.createElement('h3');
-        nom.textContent = element.name;
-        myDivB.append(nom);
+        const name = document.createElement('h3');               //Neme of camera- from json file
+        name.textContent = element.name;
+        secondDiv.append(name);
 
-        const prix = document.createElement('h4');
-        prix.textContent = element.price / 100 +',00'+ " €";
-        myDivB.append(prix);
+        const price = document.createElement('h4');              //Price- from json file
+        price.textContent = element.price / 100 + " £";          // Devide price by 100
+        secondDiv.append(price);
 
-        const descriptText = document.createElement('P');
-        descriptText.textContent = element.description;
-        myDivB.append(descriptText);
+        const avalaible = document.createElement('h3');         //Avalaible lenses  (h3)
+        avalaible.textContent = " Avalaible lenses";
+        secondDiv.append(avalaible);
 
-        products.append(myDiv);
+        const lenses = document.createElement('h3');            //Lenses- from json file
+        lenses.textContent = element.lenses;
+        secondDiv.append(lenses);
+
+        const description= document.createElement('P');       //Description- from json file
+        description.textContent = element.description;
+        secondDiv.append(description);
+
+        products.append(firstDiv);
     });
 })
 
