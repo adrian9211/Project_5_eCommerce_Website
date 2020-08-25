@@ -1,8 +1,8 @@
 
 fetch('http://localhost:3000/api/cameras')       // Fetch function get acces to database and json file
 
-.then(res => res.json())       /*?*/  // Responsse from json file
-.then(res => {
+.then(response => response.json())       /*?*/  // Responsse from json file
+.then(response => {
     console.log(response); /*?*/
 
     const products = document.getElementById('productsContainer');      //Get acces to DOM element - produtsContainer classs
@@ -24,6 +24,7 @@ fetch('http://localhost:3000/api/cameras')       // Fetch function get acces to 
         card.append(myDivB);
 
         const nom = document.createElement('h3');
+        nom.textContent = element.name;
         myDivB.append(nom);
 
         const prix = document.createElement('h4');
