@@ -1,4 +1,4 @@
-const basket = JSON.parse(localStorage.getItem('basket'));
+console.log(localStorage.basket);
 
 
     const basket3 = document.getElementById('basket3')
@@ -59,3 +59,22 @@ const basket = JSON.parse(localStorage.getItem('basket'));
         localStorage.removeItem('basket', JSON.stringify(basket));
 
     });
+
+    const displayText = document.getElementById('display');
+    const basket = JSON.parse(localStorage.getItem('basket'));
+
+    for (i = 0; i < localStorage.length; i++) {
+
+        text = localStorage.getItem(basket);
+        basket.push
+        basket.innerHTML; 
+    }
+    console.log(basket);
+
+    
+
+
+
+
+
+
