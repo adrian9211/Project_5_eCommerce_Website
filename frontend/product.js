@@ -77,7 +77,7 @@ fetch('http://localhost:3000/api/cameras')       // Fetch function get acces to 
         RemoveBtn.append(IconImgRemove);
 
         next.appendChild(link);  
-        next.href = "../product.html?id=" + element._id;  // Link to single item page
+        next.href = "/frontend/product.html?id=" + element._id;  // Link to single item page
         btn.append(next);
 
         products.append(firstDiv);

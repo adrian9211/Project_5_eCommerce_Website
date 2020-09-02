@@ -65,7 +65,7 @@ adress('http://localhost:3000/api/cameras' + '/' + elementId).then(element => {
 
         const basket = JSON.parse(localStorage.getItem('basket')); 
 
-            let elementId = element._id
+            let elementId = element._id;
             let elementName = element.name;
             let elementPrice = element.price;
             let elementQuantity = 1;
