@@ -89,11 +89,12 @@ fetch('http://localhost:3000/api/cameras')       // Fetch function get acces to 
     
             const basket = JSON.parse(localStorage.getItem('basket')); 
     
+            let elementimageUrl = element.imageUrl;
                 let elementId = element._id;
                 let elementName = element.name;
                 let elementPrice = element.price;
                 let elementQuantity = 1;
-                basket.push({elementId, elementName, elementPrice, elementQuantity});
+                basket.push({elementId, elementName, elementPrice, elementQuantity, elementimageUrl});
            
                 basket.forEach(product => {
                     if (product.elementId === elementId) {
@@ -116,11 +117,12 @@ fetch('http://localhost:3000/api/cameras')       // Fetch function get acces to 
     
             const basket = JSON.parse(localStorage.getItem('basket')); 
     
+            let elementimageUrl = element.imageUrl;
                 let elementId = element._id;
                 let elementName = element.name;
                 let elementPrice = element.price;
                 let elementQuantity = 1;
-                basket.push({elementId, elementName, elementPrice, elementQuantity});
+                basket.push({elementId, elementName, elementPrice, elementQuantity, elementimageUrl});
            
                 basket.forEach(product => {
                     if (product.elementId === elementId) {

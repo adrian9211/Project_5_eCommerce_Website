@@ -60,8 +60,11 @@ console.log(localStorage.basket);
 
     });
 
-    const displayText = document.getElementById('display');
+    
     const basket = JSON.parse(localStorage.getItem('basket'));
+
+   
+  
 
     for (i = 0; i < localStorage.length; i++) {
 
@@ -69,12 +72,40 @@ console.log(localStorage.basket);
         basket.push
         basket.innerHTML; 
     }
+
+  
+
     console.log(basket);
 
-    
+    const displayText = document.getElementById('name22');
+    basket.forEach(element => {
+        const firstDiv = document.createElement('div');
+        firstDiv.className = "article col-lg-4 col-md-6 mb-4";        // New div for each camera
 
+        const card = document.createElement('div');
+        card.className = "cart-row";
+        firstDiv.append(card);
 
+        const name = document.createElement('h3');               //Name of camera- from json file
+        name.textContent = element.elementName;
+        firstDiv.append(name);
+        const price = document.createElement('h3');               //Name of camera- from json file
+        price.textContent = element.elementPrice / 100 + " £";
+        firstDiv.append(price);
+        const quantity = document.createElement('h3');
+        quantity.textContent = "Quantity " + element.elementQuantity;
 
+        const img = document.createElement('img');         //Create and display element IMG
+        img.className = "card-img-top";
+        img.src = element.elementimageUrl;
+        img.innerHTML = ` alt="${element.name}" src="${element.elementimageUrl}"`;
+        card.append(img);
+        firstDiv.append(quantity);
+        
+        displayText.append(firstDiv);
+        
 
+        
+    });
 
 
