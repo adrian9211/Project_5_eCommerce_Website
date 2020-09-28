@@ -82,6 +82,7 @@ fetch('http://localhost:3000/api/cameras')       // Fetch function get acces to 
 
         products.append(firstDiv);
 
+
         AddBtn.addEventListener('click', function (add) {               //Add item to localStorage 
             add.preventDefault() // Avoid default action.
     
@@ -94,52 +95,47 @@ fetch('http://localhost:3000/api/cameras')       // Fetch function get acces to 
                 let elementName = element.name;
                 let elementPrice = element.price;
                 let elementQuantity = 1;
-                basket.push({elementId, elementName, elementPrice, elementQuantity, elementimageUrl});
-           
-                basket.forEach(product => {
-                    if (product.elementId === elementId) {
-                        product.elementQuantity++
-                    }
-                });
-                console.log('ok')
-            
-    
+
+
+                if(basket === undefined || basket == null || basket.length > 0 ){
+                    //Existing data block
+                    basket.forEach(product => {
+                        if (product.elementId === elementId) {
+                            product.elementQuantity++
+                            console.log('increase');
+                        }
+                    });
+                } else{
+                  //Non Exist data block
+                  basket.push({elementId, elementName, elementPrice, elementQuantity, elementimageUrl});
+                    console.log('add')
+                    window.location.reload();
+                }
+
             localStorage.setItem('basket', JSON.stringify(basket));
-    
+            
         });
+        
 
-
-
-        RemoveBtn.addEventListener('click', function (remove) {             //Remove item from localStorage
+        RemoveBtn.addEventListener('click', function (remove) {                 //Remove item from localStorage
             remove.preventDefault() // Avoid default action.
     
            
     
             const basket = JSON.parse(localStorage.getItem('basket')); 
-    
-            let elementimageUrl = element.imageUrl;
-                let elementId = element._id;
-                let elementName = element.name;
-                let elementPrice = element.price;
-                let elementQuantity = 1;
-                basket.push({elementId, elementName, elementPrice, elementQuantity, elementimageUrl});
-           
                 basket.forEach(product => {
-                    if (product.elementId === elementId) {
-                        product.elementQuantity++
+                    if (product.elementQuantity >= 1) {
+                        product.elementQuantity--
                     }
                 });
                 console.log('removed')
-            
-    
-            localStorage.removeItem('basket', JSON.stringify(basket));
+            localStorage.setItem('basket', JSON.stringify(basket));
     
         });
+    
 
         
     });
 })
 
 .catch(error => alert('Sorry, the server is not responding! Please try again later.'));         // In case of error display alert.
-
-/*?*/

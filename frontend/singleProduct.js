@@ -63,14 +63,22 @@ adress('http://localhost:3000/api/cameras' + '/' + elementId).then(element => {
 
        
 
-        const basket = JSON.parse(localStorage.getItem('basket')); 
+        const basket = JSON.parse(localStorage.getItem('basket'));
             let elementimageUrl = element.imageUrl;
             let elementId = element._id;
             let elementName = element.name;
             let elementPrice = element.price;
-            let elementQuantity = 1;
-            basket.push({elementId, elementName, elementPrice, elementQuantity, elementimageUrl});
-       
+            let elementQuantity = 0;
+
+
+
+
+           if (elementId === elementId) {
+                basket.push({elementId, elementName, elementPrice, elementQuantity, elementimageUrl});
+            }
+            basket.concat({elementId, elementName, elementPrice, elementQuantity, elementimageUrl});
+
+
             basket.forEach(product => {
                 if (product.elementId === elementId) {
                     product.elementQuantity++
@@ -83,29 +91,22 @@ adress('http://localhost:3000/api/cameras' + '/' + elementId).then(element => {
 
     });
 
+
+    
+
     basketButton2.addEventListener('click', function (remove) {                 //Remove item from localStorage
         remove.preventDefault() // Avoid default action.
 
        
 
         const basket = JSON.parse(localStorage.getItem('basket')); 
-
-            let elementimageUrl = element.imageUrl;
-            let elementId = element._id;
-            let elementName = element.name;
-            let elementPrice = element.price;
-            let elementQuantity = 0;
-            basket.push({elementId, elementName, elementPrice, elementQuantity, elementimageUrl});
-       
             basket.forEach(product => {
-                if (product.elementId === elementId) {
-                    product.elementQuantity++
+                if (product.elementQuantity >= 1) {
+                    product.elementQuantity--
                 }
             });
             console.log('removed')
-        
-
-        localStorage.removeItem('basket', JSON.stringify(basket));
+        localStorage.setItem('basket', JSON.stringify(basket));
 
     });
 

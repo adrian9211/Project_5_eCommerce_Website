@@ -2,64 +2,56 @@ console.log(localStorage.basket);
 
 
     const basket3 = document.getElementById('basket3')
-    const basketButton = document.createElement('button');
-    basketButton.className = "addToBasketBtn";
-    basketButton.innerHTML = 'Add to basket';
-    basket3.append(basketButton);
+    const AddBtn = document.createElement('button');
+    AddBtn.className = "addToBasketBtn";
+    AddBtn.innerHTML = 'Add to basket';
+    basket3.append(AddBtn);
 
 
     const basket2 = document.getElementById('basket2')
-    const basketButton2 = document.createElement('button');
-    basketButton2.className = "RemoveFromBasket";
-    basketButton2.innerHTML = 'Remove from basket';
-    basket2.append(basketButton2);
+    const RemoveBtn = document.createElement('button');
+    RemoveBtn.className = "RemoveFromBasket";
+    RemoveBtn.innerHTML = 'Remove from basket';
+    basket2.append(RemoveBtn);
+
+    
 
 
-    basketButton.addEventListener('click', function (add) {                 //Add item to localStorage
+    AddBtn.addEventListener('click', function (add) {               //Add item to localStorage 
         add.preventDefault() // Avoid default action.
+
+       
 
         const basket = JSON.parse(localStorage.getItem('basket')); 
 
+        let elementimageUrl = element.imageUrl;
             let elementId = element._id;
             let elementName = element.name;
             let elementPrice = element.price;
             let elementQuantity = 1;
-            basket.push({elementId, elementName, elementPrice, elementQuantity});
-
-            basket.forEach(product => {
-                if (product.elementId === elementId) {
-                    product.elementQuantity++
-                }
-            });
-            console.log('ok')
-        localStorage.setItem('basket', JSON.stringify(basket));
+       
 
     });
 
-    basketButton2.addEventListener('click', function (remove) {                 //Remove item from localStorage
+
+
+    
+
+    RemoveBtn.addEventListener('click', function (remove) {                 //Remove item from localStorage
         remove.preventDefault() // Avoid default action.
 
+       
 
         const basket = JSON.parse(localStorage.getItem('basket')); 
-
-            let elementId = element._id;
-            let elementName = element.name;
-            let elementPrice = element.price;
-            let elementQuantity = 1;
-            basket.push({elementId, elementName, elementPrice, elementQuantity});
-
             basket.forEach(product => {
-                if (product.elementId === elementId) {
-                    product.elementQuantity++
+                if (product.elementQuantity >= 1) {
+                    product.elementQuantity--
                 }
             });
             console.log('removed')
-
-
-        localStorage.removeItem('basket', JSON.stringify(basket));
+        localStorage.setItem('basket', JSON.stringify(basket));
 
     });
-
     
     const basket = JSON.parse(localStorage.getItem('basket'));
 
@@ -69,16 +61,21 @@ console.log(localStorage.basket);
     for (i = 0; i < localStorage.length; i++) {
 
         text = localStorage.getItem(basket);
-        basket.push
-        basket.innerHTML; 
+        basket.innerHTML;
     }
 
   
 
     console.log(basket);
 
+    
+
+    
+
     const displayText = document.getElementById('name22');
-    basket.forEach(element => {
+    basket.forEach(element  => {
+        if (element.elementQuantity > 0 ) 
+        {
         const firstDiv = document.createElement('div');
         firstDiv.className = "article col-lg-4 col-md-6 mb-4";        // New div for each camera
 
@@ -99,13 +96,50 @@ console.log(localStorage.basket);
         img.className = "card-img-top";
         img.src = element.elementimageUrl;
         img.innerHTML = ` alt="${element.name}" src="${element.elementimageUrl}"`;
+
+
+        const myDivEnfantB = document.createElement('div');
+        myDivEnfantB.className = "d-flex justify-content-around align-items-end";
+        firstDiv.append(myDivEnfantB);
+
+        const AddBtn = document.createElement ('button');             // Add to basket Button 
+        AddBtn.className = "btn btn-outline-secondary";
+        myDivEnfantB.append(AddBtn);
+
+        const IconImgAdd = document.createElement ('i');          //Add to basket Button - icon
+        IconImgAdd.className = "fas fa-plus";
+        AddBtn.append(IconImgAdd);
+
+        const btn = document.createElement('button');           //Display more details Button
+        btn.className = "btn btn-outline-info ml-auto mr-auto";
+        const next = document.createElement('a');
+        const link = document.createTextNode('Display more details'); // Display more details Button - text inside Btn
+        myDivEnfantB.append(btn);
+
+
+
+
+        const RemoveBtn = document.createElement ('button');       //Remove from basket Button
+        RemoveBtn.className = "retirer btn btn-outline-secondary";
+        myDivEnfantB.append(RemoveBtn);
+
+        const IconImgRemove = document.createElement ('i');      //Remove from basket Button - icon
+        IconImgRemove.className = "far fa-minus-square";
+        RemoveBtn.append(IconImgRemove);
+
+        next.appendChild(link);  
+        next.href = "/frontend/product.html?id=" + element._id;  // Link to single item page
+        btn.append(next);
+
+        
+
         card.append(img);
         firstDiv.append(quantity);
         
         displayText.append(firstDiv);
         
 
-        
+        }  
     });
 
 
