@@ -97,7 +97,7 @@ fetch('http://localhost:3000/api/cameras')       // Fetch function get acces to 
                 let elementQuantity = 1;
 
 
-                if(basket === undefined || basket == null || basket.length > 0 ){
+                if(basket === undefined || basket.length > 4 ){
                     //Existing data block
                     basket.forEach(product => {
                         if (product.elementId === elementId) {
