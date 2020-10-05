@@ -65,8 +65,9 @@ fetch('http://localhost:3000/api/cameras')       // Fetch function get acces to 
         const link = document.createTextNode('Display more details'); // Display more details Button - text inside Btn
         myDivEnfantB.append(btn);
 
-
-
+        next.appendChild(link);  
+        next.href = "/frontend/product.html?id=" + element._id;  // Link to single item page
+        btn.append(next);
 
         const RemoveBtn = document.createElement ('button');       //Remove from basket Button
         RemoveBtn.className = "retirer btn btn-outline-secondary";
@@ -76,45 +77,133 @@ fetch('http://localhost:3000/api/cameras')       // Fetch function get acces to 
         IconImgRemove.className = "far fa-minus-square";
         RemoveBtn.append(IconImgRemove);
 
-        next.appendChild(link);  
-        next.href = "/frontend/product.html?id=" + element._id;  // Link to single item page
-        btn.append(next);
+         // Dropdown menu Start
 
+         const dropdownDiv = document.createElement('div');
+         dropdownDiv.className = "dropdown";
+         myDivEnfantB.append(dropdownDiv);
+         
+         const qtyBtn = document.createElement('a');
+         qtyBtn.textContent = "Quantity";
+         qtyBtn.setAttribute("class", "btn btn-secondary dropdown-toggle");
+         qtyBtn.setAttribute("type", "button");
+         qtyBtn.setAttribute("id", "dropdownMenuButton");
+         qtyBtn.setAttribute("data-toggle", "dropdown");
+         qtyBtn.setAttribute("aria-haspopup", "true");
+         qtyBtn.setAttribute("aria-expanded", "false");
+         dropdownDiv.append(qtyBtn);
+ 
+         const qtyDiv = document.createElement('div');       //Div for all item information : name, price and description
+         qtyDiv.className = 'dropdown-menu'
+         qtyDiv.setAttribute("aria-labelledby", "dropdownMenuButton")
+         qtyDiv.setAttribute("id", "value");
+        //  qtyDiv.setAttribute("onchange", "getSelectValue(this)")
+         dropdownDiv.append(qtyDiv);
+ 
+         const aList1 = document.createElement('a');
+         aList1.setAttribute("class", "dropdown-item");
+         aList1.setAttribute("href", "#");
+         aList1.setAttribute("type", "button");
+         aList1.setAttribute("value", "1");
+         aList1.textContent = "1";
+         qtyDiv.append(aList1);
+ 
+         const aList2 = document.createElement('a');
+         aList2.setAttribute("class", "dropdown-item");
+         aList2.setAttribute("href", "#");
+         aList2.setAttribute("type", "button");
+         aList2.setAttribute("value", "2");
+         aList2.textContent = "2";
+         qtyDiv.append(aList2);
+ 
+         const aList3 = document.createElement('a');
+         aList3.setAttribute("class", "dropdown-item");
+         aList3.setAttribute("href", "#");
+         aList3.setAttribute("type", "button");
+         aList3.setAttribute("value", "3");
+         aList3.textContent = "3";
+         qtyDiv.append(aList3);
+ 
+         const aList4 = document.createElement('a');
+         aList4.setAttribute("class", "dropdown-item");
+         aList4.setAttribute("href", "#");
+         aList4.setAttribute("type", "button");
+         aList4.setAttribute("value", "4");
+         aList4.textContent = "4";
+         qtyDiv.append(aList4);
+ 
+         const aList5 = document.createElement('a');
+         aList5.setAttribute("class", "dropdown-item");
+         aList5.setAttribute("href", "#");
+         aList5.setAttribute("type", "button");
+         aList5.setAttribute("value", "5");
+         aList5.textContent = "5";
+         qtyDiv.append(aList5);
+ 
+         const aList6 = document.createElement('a');
+         aList6.setAttribute("class", "dropdown-item");
+         aList6.setAttribute("href", "#");
+         aList6.setAttribute("type", "button");
+         aList6.setAttribute("value", "6");
+         aList6.textContent = "6";
+         qtyDiv.append(aList6);
+ 
+         const aList7 = document.createElement('a');
+         aList7.setAttribute("class", "dropdown-item");
+         aList7.setAttribute("href", "#");
+         aList7.setAttribute("type", "button");
+         aList7.setAttribute("value", "7");
+         aList7.textContent = "7";
+         qtyDiv.append(aList7);
+
+         const aList8 = document.createElement('a');
+         aList8.setAttribute("class", "dropdown-item");
+         aList8.setAttribute("href", "#");
+         aList8.setAttribute("type", "button");
+         aList8.setAttribute("value", "9");
+         aList8.textContent = "8";
+         qtyDiv.append(aList8);
+ 
+         const aList9= document.createElement('a');
+         aList9.setAttribute("class", "dropdown-item");
+         aList9.setAttribute("href", "#");
+         aList9.setAttribute("type", "button");
+         aList9.setAttribute("value", "9");
+         aList9.textContent = "9";
+         qtyDiv.append(aList9);
+ 
+       // Dropdown menu End
+        
         products.append(firstDiv);
 
+     
 
-        AddBtn.addEventListener('click', function (add) {               //Add item to localStorage 
+
+        qtyBtn.addEventListener('click', function getSelectValue(add) {               //Add item to when click AddBtn localStorage
             add.preventDefault() // Avoid default action.
-    
-           
-    
-            const basket = JSON.parse(localStorage.getItem('basket')); 
-    
-            let elementimageUrl = element.imageUrl;
-                let elementId = element._id;
-                let elementName = element.name;
-                let elementPrice = element.price;
-                let elementQuantity = 1;
+            add.returnValue;
+          
+            let basket = JSON.parse(localStorage.getItem('basket'));   // Parse data from localstorage
+          
+            let elementimageUrl = element.imageUrl;                     // element.imageUrl is a part of backend data received from JSON file
+            let elementId = element._id;                                // element._id is a part of backend data received from JSON file
+            let elementName = element.name;                             // element.name is a part of backend data received from JSON file
+            let elementPrice = element.price;                           // element.price is a part of backend data received from JSON file
+            let elementQuantity = 1;
 
-
-                if(basket === undefined || basket.length > 4 ){
-                    //Existing data block
-                    basket.forEach(product => {
-                        if (product.elementId === elementId) {
-                            product.elementQuantity++
-                            console.log('increase');
-                        }
-                    });
-                } else{
-                  //Non Exist data block
-                  basket.push({elementId, elementName, elementPrice, elementQuantity, elementimageUrl});
-                    console.log('add')
-                    window.location.reload();
-                }
-
+            if (!basket) {
+              basket = [];
+            }
+          
+            // find the index of the item if already in basket
+            const itemIndexInBasket = basket.findIndex(basketEntry => basketEntry.elementId === elementId);
+            if (itemIndexInBasket !== -1) {
+              basket[itemIndexInBasket].elementQuantity++;
+            } else {
+              basket.push({elementId, elementName, elementPrice, elementQuantity, elementimageUrl});    // Push not existing data to localstorage
+            } 
             localStorage.setItem('basket', JSON.stringify(basket));
-            
-        });
+          });
         
 
         RemoveBtn.addEventListener('click', function (remove) {                 //Remove item from localStorage
