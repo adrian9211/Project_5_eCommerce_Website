@@ -79,117 +79,103 @@ fetch('http://localhost:3000/api/cameras')       // Fetch function get acces to 
 
          // Dropdown menu Start
 
-         const dropdownDiv = document.createElement('div');
-         dropdownDiv.className = "dropdown";
-         myDivEnfantB.append(dropdownDiv);
+         const form = document.createElement('form');
+         form.setAttribute("name","formId");
+         myDivEnfantB.append(form);
+ 
+         const select = document.createElement('select');
+         select.setAttribute("name","Quantity");
+         select.setAttribute("id", "sel");
+         form.append(select);
+ 
+         const option0 = document.createElement('option');
+         option0.textContent = '0';
+         option0.setAttribute("disabled","");
+         option0.setAttribute("hiden","");
+         option0.setAttribute("selected","");
+         option0.setAttribute("id", "option");
+         option0.setAttribute("value", "0");
+         select.append(option0);
+ 
+         const option1 = document.createElement('option');
+         option1.setAttribute("value", "1");
+         option1.textContent = '1';
+         option1.setAttribute("id", "option");
+         select.append(option1);
+ 
+         const option2 = document.createElement('option');
+         option2.setAttribute("value", "2");
+         option2.textContent = '2';
+         option2.setAttribute("id", "option");
+         select.append(option2);
+ 
+         const option3 = document.createElement('option');
+         option3.setAttribute("value", "3");
+         option3.textContent = '3';
+         option3.setAttribute("id", "option");
+         select.append(option3);
+ 
+         const option4 = document.createElement('option');
+         option4.setAttribute("value", "4");
+         option4.textContent = '4';
+         option4.setAttribute("id", "option");
+         select.append(option4);
+ 
+         const option5 = document.createElement('option');
+         option5.setAttribute("value", "5");
+         option5.textContent = '5';
+         option5.setAttribute("id", "option");
+         select.append(option5);
+ 
+         const option6 = document.createElement('option');
+         option6.setAttribute("value", "6");
+         option6.textContent = '6';
+         option6.setAttribute("id", "option");
+         select.append(option6);
+ 
+         const option7 = document.createElement('option');
+         option7.setAttribute("value", "7");
+         option7.textContent = '7';
+         option7.setAttribute("id", "option");
+         select.append(option7);
+ 
+         const option8 = document.createElement('option');
+         option8.setAttribute("value", "8");
+         option8.textContent = '8';
+         option8.setAttribute("id", "option");
+         select.append(option8);
+ 
+         const option9 = document.createElement('option');
+         option9.setAttribute("value", "9");
+         option9.textContent = '9';
+         option9.setAttribute("id", "option");
+         select.append(option9);
+ 
+         const label =document.createElement('label');
+         label.setAttribute("id","labelId");
+         form.append(label);
          
-         const qtyBtn = document.createElement('a');
-         qtyBtn.textContent = "Quantity";
-         qtyBtn.setAttribute("class", "btn btn-secondary dropdown-toggle");
-         qtyBtn.setAttribute("type", "button");
-         qtyBtn.setAttribute("id", "dropdownMenuButton");
-         qtyBtn.setAttribute("data-toggle", "dropdown");
-         qtyBtn.setAttribute("aria-haspopup", "true");
-         qtyBtn.setAttribute("aria-expanded", "false");
-         dropdownDiv.append(qtyBtn);
- 
-         const qtyDiv = document.createElement('div');       //Div for all item information : name, price and description
-         qtyDiv.className = 'dropdown-menu'
-         qtyDiv.setAttribute("aria-labelledby", "dropdownMenuButton")
-         qtyDiv.setAttribute("id", "value");
-        //  qtyDiv.setAttribute("onchange", "getSelectValue(this)")
-         dropdownDiv.append(qtyDiv);
- 
-         const aList1 = document.createElement('a');
-         aList1.setAttribute("class", "dropdown-item");
-         aList1.setAttribute("href", "#");
-         aList1.setAttribute("type", "button");
-         aList1.setAttribute("value", "1");
-         aList1.textContent = "1";
-         qtyDiv.append(aList1);
- 
-         const aList2 = document.createElement('a');
-         aList2.setAttribute("class", "dropdown-item");
-         aList2.setAttribute("href", "#");
-         aList2.setAttribute("type", "button");
-         aList2.setAttribute("value", "2");
-         aList2.textContent = "2";
-         qtyDiv.append(aList2);
- 
-         const aList3 = document.createElement('a');
-         aList3.setAttribute("class", "dropdown-item");
-         aList3.setAttribute("href", "#");
-         aList3.setAttribute("type", "button");
-         aList3.setAttribute("value", "3");
-         aList3.textContent = "3";
-         qtyDiv.append(aList3);
- 
-         const aList4 = document.createElement('a');
-         aList4.setAttribute("class", "dropdown-item");
-         aList4.setAttribute("href", "#");
-         aList4.setAttribute("type", "button");
-         aList4.setAttribute("value", "4");
-         aList4.textContent = "4";
-         qtyDiv.append(aList4);
- 
-         const aList5 = document.createElement('a');
-         aList5.setAttribute("class", "dropdown-item");
-         aList5.setAttribute("href", "#");
-         aList5.setAttribute("type", "button");
-         aList5.setAttribute("value", "5");
-         aList5.textContent = "5";
-         qtyDiv.append(aList5);
- 
-         const aList6 = document.createElement('a');
-         aList6.setAttribute("class", "dropdown-item");
-         aList6.setAttribute("href", "#");
-         aList6.setAttribute("type", "button");
-         aList6.setAttribute("value", "6");
-         aList6.textContent = "6";
-         qtyDiv.append(aList6);
- 
-         const aList7 = document.createElement('a');
-         aList7.setAttribute("class", "dropdown-item");
-         aList7.setAttribute("href", "#");
-         aList7.setAttribute("type", "button");
-         aList7.setAttribute("value", "7");
-         aList7.textContent = "7";
-         qtyDiv.append(aList7);
-
-         const aList8 = document.createElement('a');
-         aList8.setAttribute("class", "dropdown-item");
-         aList8.setAttribute("href", "#");
-         aList8.setAttribute("type", "button");
-         aList8.setAttribute("value", "9");
-         aList8.textContent = "8";
-         qtyDiv.append(aList8);
- 
-         const aList9= document.createElement('a');
-         aList9.setAttribute("class", "dropdown-item");
-         aList9.setAttribute("href", "#");
-         aList9.setAttribute("type", "button");
-         aList9.setAttribute("value", "9");
-         aList9.textContent = "9";
-         qtyDiv.append(aList9);
- 
        // Dropdown menu End
         
         products.append(firstDiv);
 
-     
+        
 
 
-        qtyBtn.addEventListener('click', function getSelectValue(add) {               //Add item to when click AddBtn localStorage
+        select.addEventListener('change', function(add) {               //Add item to when click AddBtn localStorage
             add.preventDefault() // Avoid default action.
-            add.returnValue;
+            
           
             let basket = JSON.parse(localStorage.getItem('basket'));   // Parse data from localstorage
           
             let elementimageUrl = element.imageUrl;                     // element.imageUrl is a part of backend data received from JSON file
             let elementId = element._id;                                // element._id is a part of backend data received from JSON file
             let elementName = element.name;                             // element.name is a part of backend data received from JSON file
-            let elementPrice = element.price;                           // element.price is a part of backend data received from JSON file
+            let elementPrice = element.price;                          // element.price is a part of backend data received from JSON file
             let elementQuantity = 1;
+
+            label.innerText = select.options[select.selectedIndex].value;
+              console.log(select.selectedIndex);
 
             if (!basket) {
               basket = [];
@@ -222,6 +208,7 @@ fetch('http://localhost:3000/api/cameras')       // Fetch function get acces to 
     
         });
     
+        
 
         
     });
