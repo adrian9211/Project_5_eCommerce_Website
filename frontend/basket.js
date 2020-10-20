@@ -105,33 +105,6 @@ if (!localStorage.getItem('basket')) {
           localStorage.setItem('basket', JSON.stringify(basket));
         })
 
-        AddBtn.addEventListener('click', function() {               //Add item to when click AddBtn localStorage
-        
-            let basket = JSON.parse(localStorage.getItem('basket'));   // Parse data from localstorage
-          
-            let elementimageUrl = element.imageUrl;                     // element.imageUrl is a part of backend data received from JSON file
-            let elementId = element._id;                                // element._id is a part of backend data received from JSON file
-            let elementName = element.name;                             // element.name is a part of backend data received from JSON file
-            let elementPrice = element.price;                          // element.price is a part of backend data received from JSON file
-            let elementQuantity = 1;
-    
-            // label.innerText = AddBtn.options[AddBtn.selectedIndex].value;
-            //   console.log(AddBtn.selectedIndex);
-    
-            if (!basket) {
-              basket = [];
-            }
-          
-            // find the index of the item if already in basket
-            const itemIndexInBasket = basket.findIndex(basketEntry => basketEntry.elementId === elementId);
-            if (itemIndexInBasket !== -1) {
-              basket[itemIndexInBasket].elementQuantity++;
-            } else {
-              basket.push({elementId, elementName, elementPrice, elementQuantity, elementimageUrl});    // Push not existing data to localstorage
-            } 
-            localStorage.setItem('basket', JSON.stringify(basket));
-          });
-
         //  Code block responsible for concating prices for each product -- START --
         let sum = 0;
 
