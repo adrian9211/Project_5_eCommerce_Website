@@ -234,6 +234,9 @@ fetch('http://localhost:3000/api/cameras')       // Fetch function get acces to 
           });
         
 
+
+          
+
         // RemoveBtn.addEventListener('click', function (remove) {                 //Remove item from localStorage
         //     remove.preventDefault() // Avoid default action.
     

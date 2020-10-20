@@ -149,7 +149,21 @@ if (!localStorage.getItem('basket')) {
       localStorage.setItem('basket', JSON.stringify(basket));
     });
 
+    RemoveBtn.addEventListener('click', function (remove) {                 //Remove item from localStorage
+      remove.preventDefault() // Avoid default action.
 
+     
+
+      const basket = JSON.parse(localStorage.getItem('basket')); 
+          basket.forEach(product => {
+              if (product.elementQuantity >= 1) {
+                  product.elementQuantity--
+              }
+          });
+          console.log('removed')
+      localStorage.setItem('basket', JSON.stringify(basket));
+
+  });
 
 
      //  Code block responsible for concating prices for each product -- START --
