@@ -52,13 +52,13 @@ fetch('http://localhost:3000/api/cameras')       // Fetch function get acces to 
         secondDiv.append(myDivEnfantB);
 
 
-        const AddBtn = document.createElement ('button');             // Add to basket Button 
-        AddBtn.className = "btn btn-outline-secondary";
-        myDivEnfantB.append(AddBtn);
+        // const AddBtn = document.createElement ('button');             // Add to basket Button 
+        // AddBtn.className = "btn btn-outline-secondary";
+        // // myDivEnfantB.append(AddBtn);
 
-        const IconImgAdd = document.createElement ('i');          //Add to basket Button - icon
-        IconImgAdd.className = "fas fa-plus";
-        AddBtn.append(IconImgAdd);
+        // const IconImgAdd = document.createElement ('i');          //Add to basket Button - icon
+        // IconImgAdd.className = "fas fa-plus";
+        // // AddBtn.append(IconImgAdd);
 
         const btn = document.createElement('button');           //Display more details Button
         btn.className = "btn btn-outline-info ml-auto mr-auto";
@@ -70,13 +70,13 @@ fetch('http://localhost:3000/api/cameras')       // Fetch function get acces to 
         next.href = "/frontend/product.html?id=" + element._id;  // Link to single item page
         btn.append(next);
 
-        const RemoveBtn = document.createElement ('button');       //Remove from basket Button
-        RemoveBtn.className = "retirer btn btn-outline-secondary";
-        myDivEnfantB.append(RemoveBtn);
+        // const RemoveBtn = document.createElement ('button');       //Remove from basket Button
+        // RemoveBtn.className = "retirer btn btn-outline-secondary";
+        // // myDivEnfantB.append(RemoveBtn);
 
-        const IconImgRemove = document.createElement ('i');      //Remove from basket Button - icon
-        IconImgRemove.className = "far fa-minus-square";
-        RemoveBtn.append(IconImgRemove);
+        // const IconImgRemove = document.createElement ('i');      //Remove from basket Button - icon
+        // IconImgRemove.className = "far fa-minus-square";
+        // // RemoveBtn.append(IconImgRemove);
 
          // Dropdown menu Start
 
@@ -161,36 +161,36 @@ fetch('http://localhost:3000/api/cameras')       // Fetch function get acces to 
         products.append(firstDiv);
 
         
-        AddBtn.addEventListener('click', function() {               //Add item to when click AddBtn localStorage
+        // AddBtn.addEventListener('click', function() {               //Add item to when click AddBtn localStorage
         
-          let basket = JSON.parse(localStorage.getItem('basket'));   // Parse data from localstorage
+        //   let basket = JSON.parse(localStorage.getItem('basket'));   // Parse data from localstorage
         
-          let elementimageUrl = element.imageUrl;                     // element.imageUrl is a part of backend data received from JSON file
-          let elementId = element._id;                                // element._id is a part of backend data received from JSON file
-          let elementName = element.name;                             // element.name is a part of backend data received from JSON file
-          let elementPrice = element.price;                          // element.price is a part of backend data received from JSON file
+        //   let elementimageUrl = element.imageUrl;                     // element.imageUrl is a part of backend data received from JSON file
+        //   let elementId = element._id;                                // element._id is a part of backend data received from JSON file
+        //   let elementName = element.name;                             // element.name is a part of backend data received from JSON file
+        //   let elementPrice = element.price;                          // element.price is a part of backend data received from JSON file
           
   
-          label.innerText = AddBtn.options[AddBtn.selectedIndex].value;
-            console.log(AddBtn.selectedIndex);
+        //   label.innerText = AddBtn.options[AddBtn.selectedIndex].value;
+        //     console.log(AddBtn.selectedIndex);
 
-            let y = AddBtn.selectedIndex;
-            console.log(y);
-            let elementQuantity = AddBtn.selectedIndex;
+        //     let y = AddBtn.selectedIndex;
+        //     console.log(y);
+        //     let elementQuantity = AddBtn.selectedIndex;
   
-          if (!basket) {
-            basket = [];
-          }
+        //   if (!basket) {
+        //     basket = [];
+        //   }
         
-          // find the index of the item if already in basket
-          const itemIndexInBasket = basket.findIndex(basketEntry => basketEntry.elementId === elementId);
-          if (itemIndexInBasket !== -1) {
-            basket[itemIndexInBasket].AddBtn.selectedIndex;
-          } else {
-            basket.push({elementId, elementName, elementPrice, elementQuantity, elementimageUrl});    // Push not existing data to localstorage
-          } 
-          localStorage.setItem('basket', JSON.stringify(basket));
-        });
+        //   // find the index of the item if already in basket
+        //   const itemIndexInBasket = basket.findIndex(basketEntry => basketEntry.elementId === elementId);
+        //   if (itemIndexInBasket !== -1) {
+        //     basket[itemIndexInBasket].AddBtn.selectedIndex;
+        //   } else {
+        //     basket.push({elementId, elementName, elementPrice, elementQuantity, elementimageUrl});    // Push not existing data to localstorage
+        //   } 
+        //   localStorage.setItem('basket', JSON.stringify(basket));
+        // });
       
 
 
@@ -207,7 +207,7 @@ fetch('http://localhost:3000/api/cameras')       // Fetch function get acces to 
             let elementPrice = element.price;                          // element.price is a part of backend data received from JSON file
             
             label.innerText = select.options[select.selectedIndex].value;
-              console.log(select.selectedIndex);
+              // console.log(select.selectedIndex);
 
 
               let y = select.selectedIndex;
@@ -234,21 +234,21 @@ fetch('http://localhost:3000/api/cameras')       // Fetch function get acces to 
           });
         
 
-        RemoveBtn.addEventListener('click', function (remove) {                 //Remove item from localStorage
-            remove.preventDefault() // Avoid default action.
+        // RemoveBtn.addEventListener('click', function (remove) {                 //Remove item from localStorage
+        //     remove.preventDefault() // Avoid default action.
     
            
     
-            const basket = JSON.parse(localStorage.getItem('basket')); 
-                basket.forEach(product => {
-                    if (product.elementQuantity >= 1) {
-                        product.elementQuantity--
-                    }
-                });
-                console.log('removed')
-            localStorage.setItem('basket', JSON.stringify(basket));
+        //     const basket = JSON.parse(localStorage.getItem('basket')); 
+        //         basket.forEach(product => {
+        //             if (product.elementQuantity >= 1) {
+        //                 product.elementQuantity--
+        //             }
+        //         });
+        //         console.log('removed')
+        //     localStorage.setItem('basket', JSON.stringify(basket));
     
-        });
+        // });
     
         
 

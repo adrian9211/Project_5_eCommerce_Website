@@ -77,13 +77,15 @@ h3, h4, p {
 }
 
 
-.addToBasketBtn{
+.btn-success{
+    width: 160px;
     position: relative;
     top: 50%;
     left: 45%;
 }
 
-.RemoveFromBasket {
+.btn-warning {
+    width: 160px;
     position: relative;
     top: 50%;
     left: 45%;

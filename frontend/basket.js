@@ -77,6 +77,9 @@ if (!localStorage.getItem('basket')) {
 
         displayText.append(firstDiv);
 
+
+
+
         add.addEventListener('click', function() {
           
           let basket = JSON.parse(localStorage.getItem('basket'));   // Parse data from localstorage
@@ -86,6 +89,7 @@ if (!localStorage.getItem('basket')) {
           let elementName = element.name;                             // element.name is a part of backend data received from JSON file
           let elementPrice = element.price;                          // element.price is a part of backend data received from JSON file
           let add2 = document.getElementById("userinput").value;     // add2 varriable get value from label
+          console.log(add2);
           let yInt = Number.parseInt(add2);                         // parse label value to Integer number
           console.log(yInt);                                        // console log to check number
           let elementQuantity = yInt;                               // assign label value to elementQuantity
@@ -94,29 +98,74 @@ if (!localStorage.getItem('basket')) {
           if (!basket) {
             basket = [];
           }
-        
-          // find the index of the item if already in basket
-          const itemIndexInBasket = basket.findIndex(basketEntry => basketEntry.elementId === elementId);
+
+        //   find the index of the item if already in basket
+        const itemIndexInBasket = basket.findIndex (
+        (basketEntry) => {
+          console.log("BE",basketEntry);
+          console.log("EID",elementId);
+
+            return basketEntry.elementId === elementId;
+          }
+          );
+
           if (itemIndexInBasket !== -1) {
             basket[itemIndexInBasket].elementQuantity++;
           } else {
             basket.push({elementId, elementName, elementPrice, elementQuantity, elementimageUrl});    // Push not existing data to localstorage
           } 
           localStorage.setItem('basket', JSON.stringify(basket));
-        })
-
-        //  Code block responsible for concating prices for each product -- START --
-        let sum = 0;
-
-        basket.forEach(element => {
-            element.elementId
-            let price2 = element.elementQuantity*element.elementPrice;
-            console.log(price2 / 100);
-            sum += price2;
-            let displayPrice = document.createElement('p');
-            document.getElementsByClassName('cart-total-price')[0].innerText = '£' + (sum /100);
-            console.log(sum /100);
-        })
-    
-        //  Code block responsible for concating prices for each product -- END -- 
     });
+
+
+
+
+
+
+
+
+    AddBtn.addEventListener('click', function (add) {               //Add item to when click AddBtn localStorage
+      add.preventDefault() // Avoid default action.
+    
+      let basket = JSON.parse(localStorage.getItem('basket'));   // Parse data from localstorage
+    
+      let elementimageUrl = element.imageUrl;                     // element.imageUrl is a part of backend data received from JSON file
+      let elementId = element._id;                                // element._id is a part of backend data received from JSON file
+      let elementName = element.name;                             // element.name is a part of backend data received from JSON file
+      let elementPrice = element.price;                           // element.price is a part of backend data received from JSON file
+      let elementQuantity = 1;
+    
+      if (!basket) {
+        basket = [];
+      }
+    
+      // find the index of the item if already in basket
+      const itemIndexInBasket = basket.findIndex(basketEntry => basketEntry.elementId === elementId);
+      if (itemIndexInBasket !== -1) {
+        basket[itemIndexInBasket].elementQuantity++;
+      } else {
+        basket.push({elementId, elementName, elementPrice, elementQuantity, elementimageUrl});    // Push not existing data to localstorage
+      } 
+      localStorage.setItem('basket', JSON.stringify(basket));
+    });
+
+
+
+
+     //  Code block responsible for concating prices for each product -- START --
+     let sum = 0;
+
+     basket.forEach(element => {
+         element.elementId
+         let price2 = element.elementQuantity*element.elementPrice;
+         console.log(price2 / 100);
+         sum += price2;
+         let displayPrice = document.createElement('p');
+         document.getElementsByClassName('cart-total-price')[0].innerText = '£' + (sum /100);
+         console.log(sum /100);
+     })
+ 
+     //  Code block responsible for concating prices for each product -- END -- 
+
+
+  })

@@ -46,44 +46,42 @@ adress('http://localhost:3000/api/cameras' + '/' + elementId).then(element => {
     const basket = document.getElementById('basket')
 
     const AddBtn = document.createElement('button');
-    AddBtn.className = "addToBasketBtn";
+    AddBtn.className = "btn btn-success btn-sm";
     AddBtn.innerHTML = 'Add to basket';
     basket.append(AddBtn);
 
 
     const basket2 = document.getElementById('basket2')
     const basketButton2 = document.createElement('button');
-    basketButton2.className = "RemoveFromBasket";
+    basketButton2.className = "btn btn-warning btn-sm";
     basketButton2.innerHTML = 'Remove from basket';
     basket2.append(basketButton2);
 
 
-    AddBtn.addEventListener('click', function() {               //Add item to when click AddBtn localStorage
-        
-        let basket = JSON.parse(localStorage.getItem('basket'));   // Parse data from localstorage
-      
-        let elementimageUrl = element.imageUrl;                     // element.imageUrl is a part of backend data received from JSON file
-        let elementId = element._id;                                // element._id is a part of backend data received from JSON file
-        let elementName = element.name;                             // element.name is a part of backend data received from JSON file
-        let elementPrice = element.price;                          // element.price is a part of backend data received from JSON file
-        let elementQuantity = 1;
-
-        // label.innerText = AddBtn.options[AddBtn.selectedIndex].value;
-        //   console.log(AddBtn.selectedIndex);
-
-        if (!basket) {
-          basket = [];
-        }
-      
-        // find the index of the item if already in basket
-        const itemIndexInBasket = basket.findIndex(basketEntry => basketEntry.elementId === elementId);
-        if (itemIndexInBasket !== -1) {
-          basket[itemIndexInBasket].elementQuantity++;
-        } else {
-          basket.push({elementId, elementName, elementPrice, elementQuantity, elementimageUrl});    // Push not existing data to localstorage
-        } 
-        localStorage.setItem('basket', JSON.stringify(basket));
-      });
+    AddBtn.addEventListener('click', function (add) {               //Add item to when click AddBtn localStorage
+      add.preventDefault() // Avoid default action.
+    
+      let basket = JSON.parse(localStorage.getItem('basket'));   // Parse data from localstorage
+    
+      let elementimageUrl = element.imageUrl;                     // element.imageUrl is a part of backend data received from JSON file
+      let elementId = element._id;                                // element._id is a part of backend data received from JSON file
+      let elementName = element.name;                             // element.name is a part of backend data received from JSON file
+      let elementPrice = element.price;                           // element.price is a part of backend data received from JSON file
+      let elementQuantity = 1;
+    
+      if (!basket) {
+        basket = [];
+      }
+    
+      // find the index of the item if already in basket
+      const itemIndexInBasket = basket.findIndex(basketEntry => basketEntry.elementId === elementId);
+      if (itemIndexInBasket !== -1) {
+        basket[itemIndexInBasket].elementQuantity++;
+      } else {
+        basket.push({elementId, elementName, elementPrice, elementQuantity, elementimageUrl});    // Push not existing data to localstorage
+      } 
+      localStorage.setItem('basket', JSON.stringify(basket));
+    });
 
 
     
