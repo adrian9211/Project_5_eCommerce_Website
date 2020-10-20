@@ -1,107 +1,63 @@
 console.log(localStorage.basket);
-
-
-    const basket3 = document.getElementById('basket3')
-    const AddBtn = document.createElement('button');
-    AddBtn.className = "addToBasketBtn";
-    AddBtn.innerHTML = 'Add to basket';
-    basket3.append(AddBtn);
-
-
-    const basket2 = document.getElementById('basket2')
-    const RemoveBtn = document.createElement('button');
-    RemoveBtn.className = "RemoveFromBasket";
-    RemoveBtn.innerHTML = 'Remove from basket';
-    basket2.append(RemoveBtn);
-
     
+const basket = JSON.parse(localStorage.getItem('basket'));
 
+if (!localStorage.getItem('basket')) { 
+    localStorage.setItem('basket', JSON.stringify([]))  
+};
+  console.log(basket);
 
-    AddBtn.addEventListener('click', function (add) {               //Add item to localStorage 
-        add.preventDefault() // Avoid default action.
-
-       
-
-        const basket = JSON.parse(localStorage.getItem('basket')); 
-
-        let elementimageUrl = element.imageUrl;
-            let elementId = element._id;
-            let elementName = element.name;
-            let elementPrice = element.price;
-            let elementQuantity = 1;
-       
-
-    });
-
-
-
-    
-
-    RemoveBtn.addEventListener('click', function (remove) {                 //Remove item from localStorage
-        remove.preventDefault() // Avoid default action.
-
-       
-
-        const basket = JSON.parse(localStorage.getItem('basket')); 
-            basket.forEach(product => {
-                if (product.elementQuantity >= 1) {
-                    product.elementQuantity--
-                }
-            });
-            console.log('removed')
-        localStorage.setItem('basket', JSON.stringify(basket));
-
-    });
-    
-    const basket = JSON.parse(localStorage.getItem('basket'));
 
    
-  
-
-    for (i = 0; i < localStorage.length; i++) {
-
-        text = localStorage.getItem(basket);
-        basket.innerHTML;
-    }
-
-  
-
-    console.log(basket);
-
-    
-
-    
 
     const displayText = document.getElementById('name22');
     basket.forEach(element  => {
-        if (element.elementQuantity > 0 ) 
-        {
+        element.elementId
+
+        
         const firstDiv = document.createElement('div');
-        firstDiv.className = "article col-lg-4 col-md-6 mb-4";        // New div for each camera
+        firstDiv.className = "cart-row";        // New div for each camera
 
         const card = document.createElement('div');
-        card.className = "cart-row";
+        card.className = "cart-item cart-column";
         firstDiv.append(card);
 
-        const name = document.createElement('h3');               //Name of camera- from json file
-        name.textContent = element.elementName;
-        firstDiv.append(name);
-        const price = document.createElement('h3');               //Name of camera- from json file
+        const img = document.createElement('img');         //Create and display element IMG
+        img.className = "cart-item-image";
+        img.src = element.elementimageUrl;
+        card.append(img);
+
+        const name2 = document.createElement('span');               //Name of camera- from json file
+        name2.className = "cart-item-title";
+        name2.textContent = element.elementName;
+        card.append(name2);
+
+        
+        const price = document.createElement('div');               //Name of camera- from json file
+        price.setAttribute("class", "cart-price cart-column");
         price.textContent = element.elementPrice / 100 + " £";
         firstDiv.append(price);
-        const quantity = document.createElement('h3');
-        quantity.textContent = "Quantity " + element.elementQuantity;
-
-        const img = document.createElement('img');         //Create and display element IMG
-        img.className = "card-img-top";
-        img.src = element.elementimageUrl;
-        img.innerHTML = ` alt="${element.name}" src="${element.elementimageUrl}"`;
 
 
         const myDivEnfantB = document.createElement('div');
-        myDivEnfantB.className = "d-flex justify-content-around align-items-end";
+        // myDivEnfantB.textContent = "Quantity " + element.elementQuantity;
+        myDivEnfantB.className = "cart-quantity cart-column";
         firstDiv.append(myDivEnfantB);
-
+        
+        const input = document.createElement('input');
+        input.className = "cart-quantity-input";
+        input.id = "userinput";
+        input.textContent = element.elementQuantity;
+        input.setAttribute("type", "number");
+        input.setAttribute("value", element.elementQuantity);
+        myDivEnfantB.append(input);
+        
+        const add = document.createElement ('button');
+        add.className = "btn btn-primary";
+        add.setAttribute("type", "button");
+        // add.setAttribute("onclick", "readvalue");
+        add.textContent = "ADD" ;
+        myDivEnfantB.append(add);
         const AddBtn = document.createElement ('button');             // Add to basket Button 
         AddBtn.className = "btn btn-outline-secondary";
         myDivEnfantB.append(AddBtn);
@@ -109,14 +65,6 @@ console.log(localStorage.basket);
         const IconImgAdd = document.createElement ('i');          //Add to basket Button - icon
         IconImgAdd.className = "fas fa-plus";
         AddBtn.append(IconImgAdd);
-
-        const btn = document.createElement('button');           //Display more details Button
-        btn.className = "btn btn-outline-info ml-auto mr-auto";
-        const next = document.createElement('a');
-        const link = document.createTextNode('Display more details'); // Display more details Button - text inside Btn
-        myDivEnfantB.append(btn);
-
-
 
 
         const RemoveBtn = document.createElement ('button');       //Remove from basket Button
@@ -127,19 +75,75 @@ console.log(localStorage.basket);
         IconImgRemove.className = "far fa-minus-square";
         RemoveBtn.append(IconImgRemove);
 
-        next.appendChild(link);  
-        next.href = "/frontend/product.html?id=" + element._id;  // Link to single item page
-        btn.append(next);
-
-        
-
-        card.append(img);
-        firstDiv.append(quantity);
-        
         displayText.append(firstDiv);
+
+        add.addEventListener('click', function() {
+          
+          let basket = JSON.parse(localStorage.getItem('basket'));   // Parse data from localstorage
+          
+          let elementimageUrl = element.imageUrl;                     // element.imageUrl is a part of backend data received from JSON file
+          let elementId = element._id;                                // element._id is a part of backend data received from JSON file
+          let elementName = element.name;                             // element.name is a part of backend data received from JSON file
+          let elementPrice = element.price;                          // element.price is a part of backend data received from JSON file
+          let add2 = document.getElementById("userinput").value;     // add2 varriable get value from label
+          let yInt = Number.parseInt(add2);                         // parse label value to Integer number
+          console.log(yInt);                                        // console log to check number
+          let elementQuantity = yInt;                               // assign label value to elementQuantity
+          console.log(elementQuantity);
+
+          if (!basket) {
+            basket = [];
+          }
         
+          // find the index of the item if already in basket
+          const itemIndexInBasket = basket.findIndex(basketEntry => basketEntry.elementId === elementId);
+          if (itemIndexInBasket !== -1) {
+            basket[itemIndexInBasket].elementQuantity++;
+          } else {
+            basket.push({elementId, elementName, elementPrice, elementQuantity, elementimageUrl});    // Push not existing data to localstorage
+          } 
+          localStorage.setItem('basket', JSON.stringify(basket));
+        })
 
-        }  
+        AddBtn.addEventListener('click', function() {               //Add item to when click AddBtn localStorage
+        
+            let basket = JSON.parse(localStorage.getItem('basket'));   // Parse data from localstorage
+          
+            let elementimageUrl = element.imageUrl;                     // element.imageUrl is a part of backend data received from JSON file
+            let elementId = element._id;                                // element._id is a part of backend data received from JSON file
+            let elementName = element.name;                             // element.name is a part of backend data received from JSON file
+            let elementPrice = element.price;                          // element.price is a part of backend data received from JSON file
+            let elementQuantity = 1;
+    
+            // label.innerText = AddBtn.options[AddBtn.selectedIndex].value;
+            //   console.log(AddBtn.selectedIndex);
+    
+            if (!basket) {
+              basket = [];
+            }
+          
+            // find the index of the item if already in basket
+            const itemIndexInBasket = basket.findIndex(basketEntry => basketEntry.elementId === elementId);
+            if (itemIndexInBasket !== -1) {
+              basket[itemIndexInBasket].elementQuantity++;
+            } else {
+              basket.push({elementId, elementName, elementPrice, elementQuantity, elementimageUrl});    // Push not existing data to localstorage
+            } 
+            localStorage.setItem('basket', JSON.stringify(basket));
+          });
+
+        //  Code block responsible for concating prices for each product -- START --
+        let sum = 0;
+
+        basket.forEach(element => {
+            element.elementId
+            let price2 = element.elementQuantity*element.elementPrice;
+            console.log(price2 / 100);
+            sum += price2;
+            let displayPrice = document.createElement('p');
+            document.getElementsByClassName('cart-total-price')[0].innerText = '£' + (sum /100);
+            console.log(sum /100);
+        })
+    
+        //  Code block responsible for concating prices for each product -- END -- 
     });
-
-

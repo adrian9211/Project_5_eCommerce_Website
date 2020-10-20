@@ -316,3 +316,25 @@ img {
     margin: 40px auto 80px auto;
     font-size: 1.75em;
 }
+
+.section-header {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* .cart-item {
+    display: flex;
+    flex-direction: row;
+} */
+
+.cart-item-title {
+    color: #333;
+    margin-left: .5em;
+    font-size: 1.2em;
+}
+
+.cart-item-image {
+    width: 125px;
+    height: auto;
+    border-radius: 20px;
+}
+

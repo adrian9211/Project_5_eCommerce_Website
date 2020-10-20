@@ -51,6 +51,7 @@ fetch('http://localhost:3000/api/cameras')       // Fetch function get acces to 
         myDivEnfantB.className = "d-flex justify-content-around align-items-end";
         secondDiv.append(myDivEnfantB);
 
+
         const AddBtn = document.createElement ('button');             // Add to basket Button 
         AddBtn.className = "btn btn-outline-secondary";
         myDivEnfantB.append(AddBtn);
@@ -160,6 +161,38 @@ fetch('http://localhost:3000/api/cameras')       // Fetch function get acces to 
         products.append(firstDiv);
 
         
+        AddBtn.addEventListener('click', function() {               //Add item to when click AddBtn localStorage
+        
+          let basket = JSON.parse(localStorage.getItem('basket'));   // Parse data from localstorage
+        
+          let elementimageUrl = element.imageUrl;                     // element.imageUrl is a part of backend data received from JSON file
+          let elementId = element._id;                                // element._id is a part of backend data received from JSON file
+          let elementName = element.name;                             // element.name is a part of backend data received from JSON file
+          let elementPrice = element.price;                          // element.price is a part of backend data received from JSON file
+          
+  
+          label.innerText = AddBtn.options[AddBtn.selectedIndex].value;
+            console.log(AddBtn.selectedIndex);
+
+            let y = AddBtn.selectedIndex;
+            console.log(y);
+            let elementQuantity = AddBtn.selectedIndex;
+  
+          if (!basket) {
+            basket = [];
+          }
+        
+          // find the index of the item if already in basket
+          const itemIndexInBasket = basket.findIndex(basketEntry => basketEntry.elementId === elementId);
+          if (itemIndexInBasket !== -1) {
+            basket[itemIndexInBasket].AddBtn.selectedIndex;
+          } else {
+            basket.push({elementId, elementName, elementPrice, elementQuantity, elementimageUrl});    // Push not existing data to localstorage
+          } 
+          localStorage.setItem('basket', JSON.stringify(basket));
+        });
+      
+
 
 
         select.addEventListener('change', function(add) {               //Add item to when click AddBtn localStorage
@@ -172,10 +205,19 @@ fetch('http://localhost:3000/api/cameras')       // Fetch function get acces to 
             let elementId = element._id;                                // element._id is a part of backend data received from JSON file
             let elementName = element.name;                             // element.name is a part of backend data received from JSON file
             let elementPrice = element.price;                          // element.price is a part of backend data received from JSON file
-            let elementQuantity = 1;
-
+            
             label.innerText = select.options[select.selectedIndex].value;
               console.log(select.selectedIndex);
+
+
+              let y = select.selectedIndex;
+              console.log(y);
+
+              let yInt = Number.parseInt(y);
+              console.log(yInt);
+
+              let elementQuantity = yInt;
+
 
             if (!basket) {
               basket = [];
@@ -184,7 +226,7 @@ fetch('http://localhost:3000/api/cameras')       // Fetch function get acces to 
             // find the index of the item if already in basket
             const itemIndexInBasket = basket.findIndex(basketEntry => basketEntry.elementId === elementId);
             if (itemIndexInBasket !== -1) {
-              basket[itemIndexInBasket].elementQuantity++;
+              basket[itemIndexInBasket].yInt;
             } else {
               basket.push({elementId, elementName, elementPrice, elementQuantity, elementimageUrl});    // Push not existing data to localstorage
             } 
