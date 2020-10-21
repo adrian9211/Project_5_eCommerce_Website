@@ -21,27 +21,85 @@ async function adress(url) {
 adress('http://localhost:3000/api/cameras' + '/' + elementId).then(element => { 
     console.log(element)
 
-
-
     const ourCameras = document.getElementById('ourCameras');
     const name = document.getElementById('name');
     const price = document.getElementById('price');
     const description = document.getElementById('description');
     const lenses = document.getElementById('lenses');
-
-    
-
     const image = document.createElement('img');
     image.src = element.imageUrl;
     image.setAttribute('width', 800);
     image.innerHTML = ` alt="${element.name}" src="${element.imageUrl}" `;
     ourCameras.append(image);
 
-    
     name.innerHTML = "Camera <br><br>" + element.name + "<hr>";
     price.innerHTML = "Price: " + element.price / 100 + " £" + "<hr>" ;
     description.innerHTML = "<strong>Description : </strong>" + "<br>" + element.description + element.description + element.description + element.description + element.description+ element.description + "<hr>";
     lenses.innerHTML = "Avalaible lenses: <br>" + element.lenses + "<hr>" ;
+
+    
+    // Dropdown menu for lenses start
+
+    const labelLens = document.createElement('label');
+    labelLens.textContent = "Chose your lens : ";
+    lenses.append(labelLens);
+
+    const select = document.createElement('select');
+    select.setAttribute("name","Lenses");
+    select.setAttribute("id", "sel");
+    lenses.append(select);
+
+    const avalaibleLenses = document.getElementById('sel');
+    
+    for (let i = 0; i < element.lenses.length; i++) {     // For loop - dropdown menu 
+      const lens = element.lenses[i];
+      const mylenses = document.createElement('option');
+      select.append(mylenses);
+      mylenses.textContent = lens;
+      mylenses.value = lens;
+    }
+
+    // Dropdown menu for lenses end
+    
+
+
+
+      // const form = document.createElement('form');
+      // form.setAttribute("name","formId");
+      // form.className = "avalaibleLenses"
+      // lenses.append(form);
+      
+      // const select = document.createElement('select');
+      // select.setAttribute("name","Quantity");
+      // select.setAttribute("id", "sel");
+      // form.append(select);
+      
+      // const option0 = document.createElement('option');
+      // option0.textContent = 'Select lenses';
+      // option0.setAttribute("disabled","");
+      // option0.setAttribute("hiden","");
+      // option0.setAttribute("selected","");
+      // option0.setAttribute("id", "option");
+      // option0.setAttribute("value", "0");
+      // select.append(option0);
+      
+      // const option1 = document.createElement('option');
+      // option1.setAttribute("value", "");
+      // option1.textContent = element.lenses[0];
+      // select.append(option1);
+
+      // const option2 = document.createElement('option');
+      // option2.setAttribute("value", "");
+      // option2.textContent = element.lenses[1];
+      // select.append(option2);
+      
+      // const option3 = document.createElement('option');
+      // option3.setAttribute("value", "");
+      // option3.textContent = element.lenses[2];
+      // select.append(option3);
+      
+
+    
 
     const basket = document.getElementById('basket')
 
@@ -51,6 +109,7 @@ adress('http://localhost:3000/api/cameras' + '/' + elementId).then(element => {
     basket.append(AddBtn);
 
 
+  
     // const basket2 = document.getElementById('basket2')
     // const basketButton2 = document.createElement('button');
     // basketButton2.className = "btn btn-warning btn-sm";
