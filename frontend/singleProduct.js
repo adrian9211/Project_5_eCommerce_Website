@@ -51,11 +51,11 @@ adress('http://localhost:3000/api/cameras' + '/' + elementId).then(element => {
     basket.append(AddBtn);
 
 
-    const basket2 = document.getElementById('basket2')
-    const basketButton2 = document.createElement('button');
-    basketButton2.className = "btn btn-warning btn-sm";
-    basketButton2.innerHTML = 'Remove from basket';
-    basket2.append(basketButton2);
+    // const basket2 = document.getElementById('basket2')
+    // const basketButton2 = document.createElement('button');
+    // basketButton2.className = "btn btn-warning btn-sm";
+    // basketButton2.innerHTML = 'Remove from basket';
+    // basket2.append(basketButton2);
 
 
     AddBtn.addEventListener('click', function (add) {               //Add item to when click AddBtn localStorage
@@ -86,21 +86,21 @@ adress('http://localhost:3000/api/cameras' + '/' + elementId).then(element => {
 
     
 
-    basketButton2.addEventListener('click', function (remove) {                 //Remove item from localStorage
-        remove.preventDefault() // Avoid default action.
+    // basketButton2.addEventListener('click', function (remove) {                 //Remove item from localStorage
+    //     remove.preventDefault() // Avoid default action.
 
        
 
-        const basket = JSON.parse(localStorage.getItem('basket')); 
-            basket.forEach(product => {
-                if (product.elementQuantity >= 1) {
-                    product.elementQuantity--
-                }
-            });
-            console.log('removed')
-        localStorage.setItem('basket', JSON.stringify(basket));
+    //     const basket = JSON.parse(localStorage.getItem('basket')); 
+    //         basket.forEach(product => {
+    //             if (product.elementQuantity >= 1) {
+    //                 product.elementQuantity--
+    //             }
+    //         });
+    //         console.log('removed')
+    //     localStorage.setItem('basket', JSON.stringify(basket));
 
-    });
+    // });
 
 });
 

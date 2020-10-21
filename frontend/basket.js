@@ -10,8 +10,8 @@ if (!localStorage.getItem('basket')) {
 
    
 
-    const displayText = document.getElementById('name22');
-    basket.forEach(element  => {
+        const displayText = document.getElementById('name22');
+        basket.forEach(element  => {
         element.elementId
 
         
@@ -43,6 +43,16 @@ if (!localStorage.getItem('basket')) {
         // myDivEnfantB.textContent = "Quantity " + element.elementQuantity;
         myDivEnfantB.className = "cart-quantity cart-column";
         firstDiv.append(myDivEnfantB);
+
+        const RemoveBtn = document.createElement ('button');       //Remove from basket Button
+        RemoveBtn.setAttribute("onClick", "window.location.reload();"); 
+        RemoveBtn.className = "retirer btn btn-outline-secondary";
+        myDivEnfantB.append(RemoveBtn);
+
+        const IconImgRemove = document.createElement ('i');      //Remove from basket Button - icon
+        IconImgRemove.className = "far fa-minus-square";
+        RemoveBtn.append(IconImgRemove);
+
         
         const input = document.createElement('input');
         input.className = "cart-quantity-input";
@@ -52,13 +62,15 @@ if (!localStorage.getItem('basket')) {
         input.setAttribute("value", element.elementQuantity);
         myDivEnfantB.append(input);
         
-        const add = document.createElement ('button');
-        add.className = "btn btn-primary";
-        add.setAttribute("type", "button");
-        // add.setAttribute("onclick", "readvalue");
-        add.textContent = "ADD" ;
-        myDivEnfantB.append(add);
-        const AddBtn = document.createElement ('button');             // Add to basket Button 
+        // const add = document.createElement ('button');
+        // add.className = "btn btn-primary";
+        // add.setAttribute("type", "button");
+        // // add.setAttribute("onclick", "readvalue");
+        // add.textContent = "ADD" ;
+        // myDivEnfantB.append(add);
+
+        const AddBtn = document.createElement ('button'); 
+        AddBtn.setAttribute("onClick", "window.location.reload();");            // Add to basket Button 
         AddBtn.className = "btn btn-outline-secondary";
         myDivEnfantB.append(AddBtn);
 
@@ -67,55 +79,189 @@ if (!localStorage.getItem('basket')) {
         AddBtn.append(IconImgAdd);
 
 
-        const RemoveBtn = document.createElement ('button');       //Remove from basket Button
-        RemoveBtn.className = "retirer btn btn-outline-secondary";
-        myDivEnfantB.append(RemoveBtn);
-
-        const IconImgRemove = document.createElement ('i');      //Remove from basket Button - icon
-        IconImgRemove.className = "far fa-minus-square";
-        RemoveBtn.append(IconImgRemove);
-
+       
         displayText.append(firstDiv);
 
+      // Dropdown menu Start
+
+      // const form = document.createElement('form');
+      // form.setAttribute("name","formId");
+      // form.className = "qtyForm"
+      // myDivEnfantB.append(form);
+      
+      // const select = document.createElement('select');
+      // select.setAttribute("name","Quantity");
+      // select.setAttribute("id", "sel");
+      // form.append(select);
+      
+      // const option0 = document.createElement('option');
+      // option0.textContent = 'Select quantity';
+      // option0.setAttribute("disabled","");
+      // option0.setAttribute("hiden","");
+      // option0.setAttribute("selected","");
+      // option0.setAttribute("id", "option");
+      // option0.setAttribute("value", "0");
+      // select.append(option0);
+      
+      // const option1 = document.createElement('option');
+      // option1.setAttribute("value", "1");
+      // option1.textContent = '1';
+      // option1.setAttribute("id", "option");
+      // select.append(option1);
+      
+      // const option2 = document.createElement('option');
+      // option2.setAttribute("value", "2");
+      // option2.textContent = '2';
+      // option2.setAttribute("id", "option");
+      // select.append(option2);
+      
+      // const option3 = document.createElement('option');
+      // option3.setAttribute("value", "3");
+      // option3.textContent = '3';
+      // option3.setAttribute("id", "option");
+      // select.append(option3);
+      
+      // const option4 = document.createElement('option');
+      // option4.setAttribute("value", "4");
+      // option4.textContent = '4';
+      // option4.setAttribute("id", "option");
+      // select.append(option4);
+      
+      // const option5 = document.createElement('option');
+      // option5.setAttribute("value", "5");
+      // option5.textContent = '5';
+      // option5.setAttribute("id", "option");
+      // select.append(option5);
+      
+      // const option6 = document.createElement('option');
+      // option6.setAttribute("value", "6");
+      // option6.textContent = '6';
+      // option6.setAttribute("id", "option");
+      // select.append(option6);
+      
+      // const option7 = document.createElement('option');
+      // option7.setAttribute("value", "7");
+      // option7.textContent = '7';
+      // option7.setAttribute("id", "option");
+      // select.append(option7);
+      
+      // const option8 = document.createElement('option');
+      // option8.setAttribute("value", "8");
+      // option8.textContent = '8';
+      // option8.setAttribute("id", "option");
+      // select.append(option8);
+      
+      // const option9 = document.createElement('option');
+      // option9.setAttribute("value", "9");
+      // option9.textContent = '9';
+      // option9.setAttribute("id", "option");
+      // select.append(option9);
+      
+      // const label =document.createElement('label');
+      // label.setAttribute("id","labelId");
+      // form.append(label);
+
+        // Dropdown menu End
 
 
 
-        add.addEventListener('click', function() {
+
+        // Select dropdown start
+
+        // select.addEventListener('change', function(add) {               //Add item to when click AddBtn localStorage
+        //   add.preventDefault() // Avoid default action.
           
-          let basket = JSON.parse(localStorage.getItem('basket'));   // Parse data from localstorage
+        
+        //   let basket = JSON.parse(localStorage.getItem('basket'));   // Parse data from localstorage
+        
+        //   let elementimageUrl = element.imageUrl;                     // element.imageUrl is a part of backend data received from JSON file
+        //   let elementId = element._id;                                // element._id is a part of backend data received from JSON file
+        //   let elementName = element.name;                             // element.name is a part of backend data received from JSON file
+        //   let elementPrice = element.price;                          // element.price is a part of backend data received from JSON file
           
-          let elementimageUrl = element.imageUrl;                     // element.imageUrl is a part of backend data received from JSON file
-          let elementId = element._id;                                // element._id is a part of backend data received from JSON file
-          let elementName = element.name;                             // element.name is a part of backend data received from JSON file
-          let elementPrice = element.price;                          // element.price is a part of backend data received from JSON file
-          let add2 = document.getElementById("userinput").value;     // add2 varriable get value from label
-          console.log(add2);
-          let yInt = Number.parseInt(add2);                         // parse label value to Integer number
-          console.log(yInt);                                        // console log to check number
-          let elementQuantity = yInt;                               // assign label value to elementQuantity
-          console.log(elementQuantity);
+        //   label.innerText = select.options[select.selectedIndex].value;
+        //     // console.log(select.selectedIndex);
+        
+        
+        //     // let y = select.selectedIndex;
+        //     // console.log(y);
+        
+        //     let yInt = Number.parseInt(select.selectedIndex);
+        //     // console.log(yInt);
+        
+        //     let elementQuantity = yInt;
+        //     // let yInt = elementQuantity;
 
-          if (!basket) {
-            basket = [];
-          }
+        //     console.log(elementQuantity);
+        
+        
+        //   if (!basket) {
+        //     basket = [];
+        //   }
+        
+        //   // find the index of the item if already in basket
+        //   // const itemIndexInBasket = basket.findIndex(basketEntry => basketEntry.elementId === elementId);
+        //   const itemIndexInBasket = basket.findIndex (
+        //     (basketEntry) => {
+        //       console.log("BE",basketEntry);
+        //       console.log("EID",element.elementId);
+    
+        //         return basketEntry.elementId === element.elementId;
+        //       }
+        //       );
 
-        //   find the index of the item if already in basket
-        const itemIndexInBasket = basket.findIndex (
-        (basketEntry) => {
-          console.log("BE",basketEntry);
-          console.log("EID",elementId);
+        //   if (itemIndexInBasket !== -1) {
+        //     basket[itemIndexInBasket].elementQuantity++;
+        //   } else {
+        //     basket.push({elementId, elementName, elementPrice, elementQuantity, elementimageUrl});    // Push not existing data to localstorage
+        //   } 
+        //   localStorage.setItem('basket', JSON.stringify(basket));
+        // });
+        
+        
+        
+        
+        // Select dropdown end
 
-            return basketEntry.elementId === elementId;
-          }
-          );
 
-          if (itemIndexInBasket !== -1) {
-            basket[itemIndexInBasket].elementQuantity++;
-          } else {
-            basket.push({elementId, elementName, elementPrice, elementQuantity, elementimageUrl});    // Push not existing data to localstorage
-          } 
-          localStorage.setItem('basket', JSON.stringify(basket));
-    });
+
+
+    //     add.addEventListener('click', function() {
+          
+    //       let basket = JSON.parse(localStorage.getItem('basket'));   // Parse data from localstorage
+          
+    //       let elementimageUrl = element.imageUrl;                     // element.imageUrl is a part of backend data received from JSON file
+    //       let elementId = element._id;                                // element._id is a part of backend data received from JSON file
+    //       let elementName = element.name;                             // element.name is a part of backend data received from JSON file
+    //       let elementPrice = element.price;                          // element.price is a part of backend data received from JSON file
+    //       let add2 = document.getElementById("userinput").value;     // add2 varriable get value from label
+    //       console.log(add2);
+    //       let yInt = Number.parseInt(add2);                         // parse label value to Integer number
+    //       console.log(yInt);                                        // console log to check number
+    //       let elementQuantity = yInt;                               // assign label value to elementQuantity
+    //       console.log(elementQuantity);
+
+    //       if (!basket) {
+    //         basket = [];
+    //       }
+
+    //     //   find the index of the item if already in basket
+    //     const itemIndexInBasket = basket.findIndex (
+    //     (basketEntry) => {
+    //       console.log("BE",basketEntry);
+    //       console.log("EID",element.elementId);
+
+    //         return basketEntry.elementId === element.elementId;
+    //       }
+    //       );
+
+    //       if (itemIndexInBasket !== -1) {
+    //         basket[itemIndexInBasket].elementQuantity++;
+    //       } else {
+    //         basket.push({elementId, elementName, elementPrice, elementQuantity, elementimageUrl});    // Push not existing data to localstorage
+    //       } 
+    //       localStorage.setItem('basket', JSON.stringify(basket));
+    // });
 
 
 
@@ -140,7 +286,7 @@ if (!localStorage.getItem('basket')) {
       }
     
       // find the index of the item if already in basket
-      const itemIndexInBasket = basket.findIndex(basketEntry => basketEntry.elementId === elementId);
+      const itemIndexInBasket = basket.findIndex(basketEntry => basketEntry.elementId === element.elementId);
       if (itemIndexInBasket !== -1) {
         basket[itemIndexInBasket].elementQuantity++;
       } else {
