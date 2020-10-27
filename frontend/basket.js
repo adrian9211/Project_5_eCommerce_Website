@@ -329,3 +329,77 @@ if (!localStorage.getItem('basket')) {
 
 
   })
+
+  // Form validation start
+
+  const form = document.getElementById('form');
+  const name = document.getElementById('inputName');
+  const surname = document.getElementById('inputSurname');
+  const email = document.getElementById('inputEmail');
+  const address = document.getElementById('inputAddress');
+  const city = document.getElementById('inputCity');
+
+  form.addEventListener('submit', submitButton => {
+    submitButton.preventDefault();
+    
+    checkInputs();
+  });
+
+  function checkInputs() {
+
+    // trim to remove the whitespaces at the end of the string
+    const nameValue = name.value.trim();
+    const surnameValue = surname.value.trim();
+    const emailValue = email.value.trim();
+    const addressValue = address.value.trim();
+    const cityValue = city.value.trim();
+    
+    if(nameValue === '') {
+      setErrorFor(name, 'Name cannot be blank');
+    } else {
+      setSuccessFor(name);
+    }
+    if(surnameValue === '') {
+      setErrorFor(surname, 'Surname cannot be blank');
+    } else {
+      setSuccessFor(surname);
+    }
+    
+    if(emailValue === '') {
+      setErrorFor(email, 'Email cannot be blank');
+    } else if (!isEmail(emailValue)) {
+      setErrorFor(email, 'Not a valid email');
+    } else {
+      setSuccessFor(email);
+    }
+    
+    if(address === '') {
+      setErrorFor(address, 'Address cannot be blank');
+    } else {
+      setSuccessFor(address);
+    }
+
+    if(city === '') {
+      setErrorFor(city, 'City cannot be blank');
+    } else {
+      setSuccessFor(city);
+    }  
+  }
+
+  function setErrorFor(input, message) {
+    const formControl = input.parentElement;
+    const small = formControl.querySelector('small');
+    formControl.className = 'form-control error';
+    small.innerText = message;
+  }
+
+  function setSuccessFor(input) {
+    const formControl = input.parentElement;
+    formControl.className = 'form-control success';
+  }
+
+  function isEmail(email) {
+    return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+  }
+
+  // Form validation start

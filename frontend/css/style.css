@@ -360,3 +360,13 @@ input[type=number] {
 .cart-quantity-input {
     margin: 10px;
 }
+
+#orderForm {
+    padding-top: 100px;
+}
+
+
+#formAlign {
+    padding-bottom: 50px;
+}
+

@@ -38,11 +38,7 @@
     <div class="container" id="display">
     </div>
 
-
-
-
-
-
+<!-- basket display section start -->
     <section class="container content-section basket">
       <h2 class="section-header">BASKET</h2>
       <div class="cart-row">
@@ -56,7 +52,45 @@
           <strong class="cart-total-title">Total price:</strong>
           <span class="cart-total-price">£0</span>
       </div>
-      <button class="btn btn-primary btn-purchase" type="button">PURCHASE</button>
+      <!-- <button class="btn btn-primary btn-purchase" type="button">PURCHASE</button> -->
+  </section>
+  <!-- basket display section start -->
+
+  <section class="container" id="orderForm">
+    <form id="form" class="form">
+      <h3>Order form</h3>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputName">Firsf Name</label>
+          <input type="text" class="form-control" id="inputName">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputSurname">Surname</label>
+          <input type="text" class="form-control" id="inputSurname">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputEmail">Email</label>
+          <input type="email" class="form-control" id="inputEmail" placeholder="tom@gmail.com">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputAddress">Address</label>
+        <input type="text" class="form-control" id="inputAddress" placeholder="12 Main St">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputCity">City</label>
+          <input type="text" class="form-control" id="inputCity" placeholder="London">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-12" >
+          <button type="submit" class="btn btn-primary btn-purchase float-right">Send</button>
+        </div>
+      </div>
+    </form>
   </section>
     <footer>
       <address>
@@ -64,6 +98,7 @@
       </address>
       <li>Copyright © 2020 All rights reserved.</li>
     </footer>
+
     <script src="basket.js" ></script>
 
 </body>
