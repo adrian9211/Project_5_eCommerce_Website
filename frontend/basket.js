@@ -387,15 +387,15 @@ if (!localStorage.getItem('basket')) {
   }
 
   function setErrorFor(input, message) {
-    const formControl = input.parentElement;
-    const small = formControl.querySelector('small');
-    formControl.className = 'form-control error';
+    const formControl2 = input.parentElement;
+    const small = formControl2.querySelector('small');
+    formControl2.className = 'form-control2 error';
     small.innerText = message;
   }
 
   function setSuccessFor(input) {
-    const formControl = input.parentElement;
-    formControl.className = 'form-control success';
+    const formControl2 = input.parentElement;
+    formControl2.className = 'form-control2 success';
   }
 
   function isEmail(email) {
