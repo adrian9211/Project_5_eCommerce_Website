@@ -59,45 +59,7 @@ adress('http://localhost:3000/api/cameras' + '/' + elementId).then(element => {
       mylenses.value = lens;
     }
 
-    // Dropdown menu for lenses end
-    
 
-
-
-      // const form = document.createElement('form');
-      // form.setAttribute("name","formId");
-      // form.className = "avalaibleLenses"
-      // lenses.append(form);
-      
-      // const select = document.createElement('select');
-      // select.setAttribute("name","Quantity");
-      // select.setAttribute("id", "sel");
-      // form.append(select);
-      
-      // const option0 = document.createElement('option');
-      // option0.textContent = 'Select lenses';
-      // option0.setAttribute("disabled","");
-      // option0.setAttribute("hiden","");
-      // option0.setAttribute("selected","");
-      // option0.setAttribute("id", "option");
-      // option0.setAttribute("value", "0");
-      // select.append(option0);
-      
-      // const option1 = document.createElement('option');
-      // option1.setAttribute("value", "");
-      // option1.textContent = element.lenses[0];
-      // select.append(option1);
-
-      // const option2 = document.createElement('option');
-      // option2.setAttribute("value", "");
-      // option2.textContent = element.lenses[1];
-      // select.append(option2);
-      
-      // const option3 = document.createElement('option');
-      // option3.setAttribute("value", "");
-      // option3.textContent = element.lenses[2];
-      // select.append(option3);
-      
 
     
 
@@ -107,14 +69,6 @@ adress('http://localhost:3000/api/cameras' + '/' + elementId).then(element => {
     AddBtn.className = "btn btn-success btn-sm";
     AddBtn.innerHTML = 'Add to basket';
     basket.append(AddBtn);
-
-
-  
-    // const basket2 = document.getElementById('basket2')
-    // const basketButton2 = document.createElement('button');
-    // basketButton2.className = "btn btn-warning btn-sm";
-    // basketButton2.innerHTML = 'Remove from basket';
-    // basket2.append(basketButton2);
 
 
     AddBtn.addEventListener('click', function (add) {               //Add item to when click AddBtn localStorage
@@ -141,25 +95,6 @@ adress('http://localhost:3000/api/cameras' + '/' + elementId).then(element => {
       } 
       localStorage.setItem('basket', JSON.stringify(basket));
     });
-
-
-    
-
-    // basketButton2.addEventListener('click', function (remove) {                 //Remove item from localStorage
-    //     remove.preventDefault() // Avoid default action.
-
-       
-
-    //     const basket = JSON.parse(localStorage.getItem('basket')); 
-    //         basket.forEach(product => {
-    //             if (product.elementQuantity >= 1) {
-    //                 product.elementQuantity--
-    //             }
-    //         });
-    //         console.log('removed')
-    //     localStorage.setItem('basket', JSON.stringify(basket));
-
-    // });
 
 });
 
