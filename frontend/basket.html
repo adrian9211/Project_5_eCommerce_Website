@@ -63,14 +63,14 @@
       <div>
         <div class="form-control2" >
           <label for="firstName">Firsf Name</label>
-          <input type="text" class="form-control" id="inputName">
+          <input type="text" class="form-control" id="inputName" name="firstName" required>
           <i class="fas fa-check-circle"></i>
 			    <i class="fas fa-exclamation-circle"></i>
 			    <small>Error message</small>
         </div>
         <div class="form-control2">
           <label for="lastName">Surname</label>
-          <input type="text" class="form-control" id="inputSurname">
+          <input type="text" class="form-control" id="inputSurname" name="lastName" required>
           <i class="fas fa-check-circle"></i>
 			    <i class="fas fa-exclamation-circle"></i>
 			    <small>Error message</small>
@@ -79,14 +79,14 @@
       <div>
         <div class="form-control2">
           <label for="email">Email</label>
-          <input type="email" class="form-control" id="inputEmail" placeholder="tom@gmail.com">
+          <input type="email" class="form-control" id="inputEmail" placeholder="tom@gmail.com" name="email" required>
           <i class="fas fa-check-circle"></i>
 			    <i class="fas fa-exclamation-circle"></i>
 			    <small>Error message</small>
         </div>
         <div class="form-control2">
           <label for="address">Address</label>
-        <input type="text" class="form-control" id="inputAddress" placeholder="12 Main St">
+        <input type="text" class="form-control" id="inputAddress" placeholder="12 Main St" name="address" required>
         <i class="fas fa-check-circle"></i>
         <i class="fas fa-exclamation-circle"></i>
         <small>Error message</small>
@@ -95,7 +95,7 @@
       <div>
         <div class="form-control2">
           <label for="city">City</label>
-          <input type="text" class="form-control" id="inputCity" placeholder="London">
+          <input type="text" class="form-control" id="inputCity" placeholder="London" name="city" required>
           <i class="fas fa-check-circle"></i>
 			    <i class="fas fa-exclamation-circle"></i>
 			    <small>Error message</small>
@@ -108,6 +108,12 @@
       </div>
     </form>
   </section>
+  
+</div>
+<div class="container">
+<section id="confirmation">
+
+</section>
 </div>
     <footer>
       <address>
@@ -117,6 +123,7 @@
     </footer>
 
     <script src="basket.js" ></script>
+    <script src="order.js" ></script>
 
 </body>
 </html>

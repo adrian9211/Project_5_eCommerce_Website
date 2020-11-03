@@ -13,7 +13,7 @@ if (!localStorage.getItem('basket')) {
         const displayText = document.getElementById('name22');
         basket.forEach(element  => {
         element.elementId
-
+        
         
         const firstDiv = document.createElement('div');
         firstDiv.className = "cart-row";        // New div for each camera
@@ -75,7 +75,13 @@ if (!localStorage.getItem('basket')) {
        
         displayText.append(firstDiv);
 
-
+        let basket = JSON.parse(localStorage.getItem('basket'));   // Parse data from localstorage
+    
+        let elementimageUrl = element.imageUrl;                     // element.imageUrl is a part of backend data received from JSON file
+        let elementId = element._id;                                // element._id is a part of backend data received from JSON file
+        let elementName = element.name;                             // element.name is a part of backend data received from JSON file
+        let elementPrice = element.price;                           // element.price is a part of backend data received from JSON file
+        let elementQuantity = 1;
 
 
     AddBtn.addEventListener('click', function (add) {               //Add item to when click AddBtn localStorage
@@ -89,6 +95,8 @@ if (!localStorage.getItem('basket')) {
       let elementPrice = element.price;                           // element.price is a part of backend data received from JSON file
       let elementQuantity = 1;
     
+      
+
       if (!basket) {
         basket = [];
       }
@@ -209,5 +217,53 @@ if (!localStorage.getItem('basket')) {
   function isEmail(email) {
     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
   }
+//  End of form verification
 
-  // Form validation start
+//  Order confirmation start
+  function postForm(data) {
+  return new Promise((resolve, reject) => {
+      let request = new XMLHttpRequest();
+      request.open("POST", "http://localhost:3000/api/cameras/order");
+      request.setRequestHeader("Content-Type", "application/json");
+      request.send(JSON.stringify(data));
+      request.onreadystatechange = function () {
+          if (this.readyState === 4 && this.status == 201) {
+              let response = JSON.parse(this.responseText);
+              console.log(response);
+              resolve(response);
+          }
+      }
+  })
+};
+
+
+document.getElementById('form').addEventListener("submit", function (order) {
+  order.preventDefault();
+
+  let basket = JSON.parse(localStorage.getItem('basket'));   // Parse data from localstorage
+
+let contact = {
+  firstName: form.firstName.value,
+  lastName: form.lastName.value,
+  email: form.email.value,
+  address: form.address.value,
+  city: form.city.value,
+}
+
+let data = {
+  contact: contact,
+  products: basket.map(element => element.elementId),
+}
+
+console.log(data);
+
+postForm(data).then(function (response) {
+  location.href = "basket.html";
+  let orderConfirmation = JSON.stringify(response);
+  sessionStorage.setItem("orderConfirmation", orderConfirmation);
+  localStorage.clear(); 
+});
+
+});
+
+//  Order confirmation 
