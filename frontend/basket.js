@@ -254,7 +254,7 @@ let data = {
   contact: contact,
   products: basket.map(element => element.elementId),
 }
-
+ 
 console.log(data);
 
 postForm(data).then(function (response) {

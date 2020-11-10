@@ -31,12 +31,7 @@
     color: white;
 }
 
-.nav-item{
-    padding: 10px;
-    position: relative;
-    left: -50px;
-    top: -60px;
-}
+
 
 .nav-link2 {
  color: rgb(252, 252, 252);
@@ -71,7 +66,7 @@ h3, h4, p {
 }
 .singleProductPage {
     border-style: solid;
-    border-width: 0.5px;
+    border-width: 0.2em;
     border-color: darkolivegreen;
 }
 
@@ -100,11 +95,9 @@ img {
     width: auto;
 }
 
-.mainDiv {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    
+.singleDiv {
+    margin-top: 120px;
+    margin-bottom: 20px;
 }
 
 .basketPrice {
