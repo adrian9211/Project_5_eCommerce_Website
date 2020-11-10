@@ -1,19 +1,11 @@
-console.log(localStorage.basket);
-    
-const basket = JSON.parse(localStorage.getItem('basket'));
+const basket = JSON.parse(localStorage.getItem('basket'));                              // Global variable -access from any part of the code - functions etc...
 
 if (!localStorage.getItem('basket')) { 
-    localStorage.setItem('basket', JSON.stringify([]))  
+    localStorage.setItem('basket', JSON.stringify([]))                                  // JSON.stringify method converts a JavaScript object or value to a JSON string
 };
-  console.log(basket);
-
-
-   
-
         const displayText = document.getElementById('name22');
         basket.forEach(element  => {
         element.elementId
-        
         
         const firstDiv = document.createElement('div');
         firstDiv.className = "cart-row";        // New div for each camera
@@ -31,16 +23,13 @@ if (!localStorage.getItem('basket')) {
         name2.className = "cart-item-title";
         name2.textContent = element.elementName;
         card.append(name2);
-
         
         const price = document.createElement('div');               //Name of camera- from json file
         price.setAttribute("class", "cart-price cart-column");
         price.textContent = element.elementPrice / 100 + " £";
         firstDiv.append(price);
 
-
         const myDivEnfantB = document.createElement('div');
-        // myDivEnfantB.textContent = "Quantity " + element.elementQuantity;
         myDivEnfantB.className = "cart-quantity cart-column";
         firstDiv.append(myDivEnfantB);
 
@@ -53,7 +42,6 @@ if (!localStorage.getItem('basket')) {
         IconImgRemove.className = "far fa-minus-square";
         RemoveBtn.append(IconImgRemove);
 
-        
         const input = document.createElement('input');
         input.className = "cart-quantity-input";
         input.id = "userinput";
@@ -63,7 +51,7 @@ if (!localStorage.getItem('basket')) {
         myDivEnfantB.append(input);
         
         const AddBtn = document.createElement ('button'); 
-        AddBtn.setAttribute("onClick", "window.location.reload();");            // Add to basket Button 
+        AddBtn.setAttribute("onClick", "window.location.reload();");            // Add to basket Button
         AddBtn.className = "btn btn-outline-secondary";
         myDivEnfantB.append(AddBtn);
 
@@ -71,23 +59,16 @@ if (!localStorage.getItem('basket')) {
         IconImgAdd.className = "fas fa-plus";
         AddBtn.append(IconImgAdd);
 
-
-       
         displayText.append(firstDiv);
 
-        let basket = JSON.parse(localStorage.getItem('basket'));   // Parse data from localstorage
-    
         let elementimageUrl = element.imageUrl;                     // element.imageUrl is a part of backend data received from JSON file
         let elementId = element._id;                                // element._id is a part of backend data received from JSON file
         let elementName = element.name;                             // element.name is a part of backend data received from JSON file
         let elementPrice = element.price;                           // element.price is a part of backend data received from JSON file
         let elementQuantity = 1;
 
-
     AddBtn.addEventListener('click', function (add) {               //Add item to when click AddBtn localStorage
       add.preventDefault() // Avoid default action.
-    
-      let basket = JSON.parse(localStorage.getItem('basket'));   // Parse data from localstorage
     
       let elementimageUrl = element.imageUrl;                     // element.imageUrl is a part of backend data received from JSON file
       let elementId = element._id;                                // element._id is a part of backend data received from JSON file
@@ -95,8 +76,6 @@ if (!localStorage.getItem('basket')) {
       let elementPrice = element.price;                           // element.price is a part of backend data received from JSON file
       let elementQuantity = 1;
     
-      
-
       if (!basket) {
         basket = [];
       }
@@ -114,9 +93,6 @@ if (!localStorage.getItem('basket')) {
     RemoveBtn.addEventListener('click', function (remove) {                 //Remove item from localStorage
       remove.preventDefault() // Avoid default action.
 
-     
-
-      const basket = JSON.parse(localStorage.getItem('basket')); 
           basket.forEach(product => {
               if (product.elementQuantity >= 1) {
                   product.elementQuantity--
@@ -127,23 +103,17 @@ if (!localStorage.getItem('basket')) {
 
   });
 
-
      //  Code block responsible for concating prices for each product -- START --
      let sum = 0;
 
      basket.forEach(element => {
          element.elementId
          let price2 = element.elementQuantity*element.elementPrice;
-         console.log(price2 / 100);
          sum += price2;
          let displayPrice = document.createElement('p');
          document.getElementsByClassName('cart-total-price')[0].innerText = '£' + (sum /100);
-         console.log(sum /100);
      })
- 
      //  Code block responsible for concating prices for each product -- END -- 
-
-
   })
 
   // Form validation start
@@ -157,13 +127,10 @@ if (!localStorage.getItem('basket')) {
 
   form.addEventListener('submit', submitButton => {
     submitButton.preventDefault();
-    
     checkInputs();
   });
 
   function checkInputs() {
-
-    // trim to remove the whitespaces at the end of the string
     const nameValue = name.value.trim();
     const surnameValue = surname.value.trim();
     const emailValue = email.value.trim();
@@ -199,7 +166,7 @@ if (!localStorage.getItem('basket')) {
       setErrorFor(city, 'City cannot be blank');
     } else {
       setSuccessFor(city);
-    }  
+    } 
   }
 
   function setErrorFor(input, message) {
@@ -217,15 +184,15 @@ if (!localStorage.getItem('basket')) {
   function isEmail(email) {
     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
   }
-//  End of form verification
+// Form validation end
 
 //  Order confirmation start
-  function postForm(data) {
+  function postForm(data) {                                                 // PostForm function to send form data as a string
   return new Promise((resolve, reject) => {
       let request = new XMLHttpRequest();
-      request.open("POST", "http://localhost:3000/api/cameras/order");
+      request.open("POST", "http://localhost:3000/api/cameras/order");      // URL adress
       request.setRequestHeader("Content-Type", "application/json");
-      request.send(JSON.stringify(data));
+      request.send(JSON.stringify(data));                                   // deliver data object
       request.onreadystatechange = function () {
           if (this.readyState === 4 && this.status == 201) {
               let response = JSON.parse(this.responseText);
@@ -236,13 +203,10 @@ if (!localStorage.getItem('basket')) {
   })
 };
 
-
-document.getElementById('form').addEventListener("submit", function (order) {
+document.getElementById('form').addEventListener("submit", function (order) { // access to form data by ID and assign action to SUBMIT button
   order.preventDefault();
 
-  let basket = JSON.parse(localStorage.getItem('basket'));   // Parse data from localstorage
-
-let contact = {
+let contact = {                                                           // contact Object with data from ORDER form
   firstName: form.firstName.value,
   lastName: form.lastName.value,
   email: form.email.value,
@@ -250,20 +214,19 @@ let contact = {
   city: form.city.value,
 }
 
-let data = {
-  contact: contact,
-  products: basket.map(element => element.elementId),
+let data = {                                                              // data object created to send data to server - as a respond will get an unique ID and order number
+  contact: contact,                                                       // contact data string
+  products: basket.map(element => element.elementId),                     // ID array
 }
- 
 console.log(data);
 
-postForm(data).then(function (response) {
-  location.href = "basket.html";
+postForm(data).then(function (response) {                                 // received data send to confirmation.html document
+  location.href = "confirmation.html";
   let orderConfirmation = JSON.stringify(response);
   sessionStorage.setItem("orderConfirmation", orderConfirmation);
-  localStorage.clear(); 
+  localStorage.clear();                                                   // clear localStorage after succesfull order
 });
 
 });
 
-//  Order confirmation 
+//  Order confirmation end
