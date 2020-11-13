@@ -31,7 +31,7 @@ fetch('http://localhost:3000/api/cameras')                              // Fetch
         secondDiv.append(name);
 
         const price = document.createElement('h4');                     //Price- from json file
-        price.textContent = element.price / 100 + " £";                 // Devide price by 100
+        price.textContent = element.price / 100 + " $";                 // Devide price by 100
         secondDiv.append(price);
 
         const avalaible = document.createElement('h3');                 //Avalaible lenses  (h3)

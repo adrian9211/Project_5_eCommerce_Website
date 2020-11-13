@@ -26,7 +26,7 @@ if (!localStorage.getItem('basket')) {
         
         const price = document.createElement('div');               //Name of camera- from json file
         price.setAttribute("class", "cart-price cart-column");
-        price.textContent = element.elementPrice / 100 + " £";
+        price.textContent = element.elementPrice / 100 + " $";
         firstDiv.append(price);
 
         const myDivEnfantB = document.createElement('div');
@@ -104,6 +104,7 @@ if (!localStorage.getItem('basket')) {
   });
 
      //  Code block responsible for concating prices for each product -- START --
+
      let sum = 0;
 
      basket.forEach(element => {
@@ -111,7 +112,7 @@ if (!localStorage.getItem('basket')) {
          let price2 = element.elementQuantity*element.elementPrice;
          sum += price2;
          let displayPrice = document.createElement('p');
-         document.getElementsByClassName('cart-total-price')[0].innerText = '£' + (sum /100);
+         document.getElementsByClassName('cart-total-price')[0].innerText = '$' + (sum /100);
      })
      //  Code block responsible for concating prices for each product -- END -- 
   })
@@ -206,6 +207,7 @@ if (!localStorage.getItem('basket')) {
 document.getElementById('form').addEventListener("submit", function (order) { // access to form data by ID and assign action to SUBMIT button
   order.preventDefault();
 
+
 let contact = {                                                           // contact Object with data from ORDER form
   firstName: form.firstName.value,
   lastName: form.lastName.value,
@@ -218,13 +220,11 @@ let data = {                                                              // dat
   contact: contact,                                                       // contact data string
   products: basket.map(element => element.elementId),                     // ID array
 }
-console.log(data);
 
 postForm(data).then(function (response) {                                 // received data send to confirmation.html document
   location.href = "confirmation.html";
   let orderConfirmation = JSON.stringify(response);
   sessionStorage.setItem("orderConfirmation", orderConfirmation);
-  localStorage.clear();                                                   // clear localStorage after succesfull order
 });
 
 });
