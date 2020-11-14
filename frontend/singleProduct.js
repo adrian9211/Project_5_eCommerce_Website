@@ -23,14 +23,14 @@ adress('http://localhost:3000/api/cameras' + '/' + elementId).then(element => { 
     image.innerHTML = ` alt="${element.name}" src="${element.imageUrl}" `;
     ourCameras.append(image);
     name.innerHTML = "Camera <br><br>" + element.name + "<hr>";
-    price.innerHTML = "Price: " + element.price / 100 + " £" + "<hr>" ;
+    price.innerHTML = "Price: " + element.price / 100 + " $" + "<hr>" ;
     description.innerHTML = "<strong>Description : </strong>" + "<br>" + element.description + element.description + element.description + element.description + element.description+ element.description + "<hr>";
     lenses.innerHTML = "Avalaible lenses: <br>" + element.lenses + "<hr>" ;
 
     // Dropdown menu for lenses start
 
     const labelLens = document.createElement('label');
-    labelLens.textContent = "Chose your lens : ";
+    labelLens.textContent = "Choose your lens : ";
     lenses.append(labelLens);
 
     const select = document.createElement('select');
